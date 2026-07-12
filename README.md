@@ -54,6 +54,23 @@ App-Repository [TimInTech/blitztext-linux](https://github.com/TimInTech/blitztex
 - `public/screenshots/` ← `docs/screenshots/linux/` (Dateinamen für das Web vereinheitlicht)
 - `public/images/og-*.png` ← `docs/screenshots/linux/Banner-{de,en}.png`
 
+## Deployment (geplant)
+
+Als Hosting-Weg ist **GitHub Pages** vorgesehen (Deployment über GitHub
+Actions, Workflow: `.github/workflows/deploy-pages.yml`). Der Produktionsbuild
+landet in **`dist/`** und wird von dort als Pages-Artefakt veröffentlicht.
+
+- **Custom Domain:** `blitztext.timintech.de`
+- **DNS-Ziel (später):** `CNAME blitztext → timintech.github.io`
+- Das **Repository bleibt privat**. GitHub Pages aus einem privaten Repository
+  benötigt einen passenden **GitHub-Tarif** (z. B. GitHub Pro / Team /
+  Enterprise); mit einem kostenlosen Plan ist Pages nur für öffentliche Repos
+  verfügbar.
+- **DNS-Konfiguration und die Aktivierung von GitHub Pages sind nicht Teil
+  dieses Auftrags** und müssen manuell in GitHub bzw. beim DNS-Anbieter erfolgen.
+- Die rechtlichen **`[PLATZHALTER]`** in Impressum und Datenschutzerklärung
+  müssen vor der Veröffentlichung ausgefüllt werden.
+
 ## Noch offen vor dem öffentlichen Deployment
 
 - **Rechtliche Angaben:** Impressum und Datenschutzerklärung enthalten deutlich

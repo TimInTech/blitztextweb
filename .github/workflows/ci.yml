@@ -1,0 +1,32 @@
+name: CI
+
+# Build-Check für Pull Requests. Deployt niemals – das übernimmt
+# ausschließlich deploy-pages.yml bei Push auf main oder manuellem Start.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type/Astro check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
