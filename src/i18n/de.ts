@@ -345,7 +345,6 @@ export const de = {
       imprint: 'Impressum',
     },
     websiteTitle: 'Diese Website',
-    websiteSource: 'Quellcode der Website',
     tagline: 'Blitztext Linux ist ein Open-Source-Projekt unter MIT-Lizenz.',
     langNote: 'Diese Seite gibt es auch auf Englisch.',
   },

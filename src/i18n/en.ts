@@ -346,7 +346,6 @@ export const en: typeof de = {
       imprint: 'Imprint (German)',
     },
     websiteTitle: 'This website',
-    websiteSource: 'Website source code',
     tagline: 'Blitztext Linux is an open-source project under the MIT license.',
     langNote: 'This page is also available in German.',
   },
