@@ -1,0 +1,575 @@
+---
+import type { Dict } from '../i18n';
+import { product } from '../data/product';
+import CopyBlock from './CopyBlock.astro';
+
+interface Props {
+  dict: Dict;
+}
+
+const { dict } = Astro.props;
+const heroShot = dict.screenshots.items[0]!;
+const recordingShot = dict.screenshots.items[1]!;
+---
+
+{/* ---- Hero ---- */}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-inner fade-in">
+    <div class="hero-copy">
+      <a class="badge" href={product.latestReleaseUrl} rel="noopener" aria-label={dict.hero.badgeLabel}>
+        <span aria-hidden="true">⚡</span>
+        {dict.hero.badge}
+      </a>
+      <h1 id="hero-title">{dict.hero.title}</h1>
+      <p class="hero-lead">{dict.hero.lead}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#install">{dict.hero.ctaPrimary}</a>
+        <a class="btn btn-secondary" href={product.repoUrl} rel="noopener">{dict.hero.ctaSecondary}</a>
+      </div>
+      <dl class="hero-facts">
+        {
+          dict.hero.facts.map((fact) => (
+            <div class="hero-fact">
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <figure class="hero-shot shot">
+      <img src={heroShot.src} alt={dict.hero.imgAlt} width="256" height="259" loading="eager" />
+      <figcaption>{dict.hero.imgCaption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+{/* ---- Vorteile ---- */}
+<section class="section section-alt" aria-labelledby="benefits-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="benefits-title">{dict.benefits.title}</h2>
+    </div>
+    <div class="card-grid">
+      {
+        dict.benefits.items.map((item) => (
+          <article class="card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+{/* ---- Ablauf ---- */}
+<section class="section" id="flow" aria-labelledby="flow-title">
+  <div class="container flow-inner">
+    <div class="flow-copy">
+      <div class="section-head">
+        <h2 id="flow-title">{dict.flow.title}</h2>
+      </div>
+      <ol class="flow-steps">
+        {
+          dict.flow.steps.map((step, i) => (
+            <li>
+              <span class="flow-num" aria-hidden="true">{i + 1}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+    <figure class="flow-shot shot">
+      <img src={recordingShot.src} alt={dict.flow.imgAlt} width="256" height="259" loading="lazy" />
+      <figcaption>{recordingShot.caption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+{/* ---- Funktionen ---- */}
+<section class="section section-alt" id="features" aria-labelledby="features-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="features-title">{dict.features.title}</h2>
+      <p>{dict.features.lead}</p>
+    </div>
+    <div class="card-grid">
+      {
+        dict.features.cards.map((card) => (
+          <article class="card">
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <h3 class="workflows-title">{dict.features.workflowsTitle}</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{dict.features.colWorkflow}</th>
+            <th scope="col">{dict.features.colHotkey}</th>
+            <th scope="col">{dict.features.colLlm}</th>
+            <th scope="col">{dict.features.colDesc}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            dict.features.workflows.map((wf) => (
+              <tr>
+                <th scope="row">{wf.name}</th>
+                <td><code>{wf.hotkey}</code></td>
+                <td>{wf.llm ? dict.features.llmYes : dict.features.llmNo}</td>
+                <td>{wf.desc}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">{dict.features.workflowsNote}</p>
+  </div>
+</section>
+
+{/* ---- Screenshots ---- */}
+<section class="section" id="screenshots" aria-labelledby="screenshots-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="screenshots-title">{dict.screenshots.title}</h2>
+      <p>{dict.screenshots.lead}</p>
+    </div>
+    <div class="shot-grid">
+      {
+        dict.screenshots.items.map((item) => (
+          <figure class="shot">
+            <img src={item.src} alt={item.alt} loading="lazy" />
+            <figcaption>{item.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <h3 class="tray-title">{dict.screenshots.trayTitle}</h3>
+    <p class="tray-lead">{dict.screenshots.trayLead}</p>
+    <ul class="tray-states" role="list">
+      {
+        dict.screenshots.trayStates.map((state) => (
+          <li>
+            <img src={state.src} alt={state.alt} width="48" height="48" loading="lazy" />
+            <span>{state.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+{/* ---- Local-first & Cloud ---- */}
+<section class="section section-alt" id="local-cloud" aria-labelledby="local-cloud-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="local-cloud-title">{dict.localCloud.title}</h2>
+      <p>{dict.localCloud.lead}</p>
+    </div>
+    <div class="lc-grid">
+      <article class="card lc-card lc-local">
+        <h3>{dict.localCloud.localTitle}</h3>
+        <ul>
+          {dict.localCloud.localItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+      <article class="card lc-card lc-cloud">
+        <h3>{dict.localCloud.cloudTitle}</h3>
+        <ul>
+          {dict.localCloud.cloudItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+    </div>
+    <div class="notice lc-note">
+      <p>{dict.localCloud.note}</p>
+    </div>
+  </div>
+</section>
+
+{/* ---- Installation ---- */}
+<section class="section" id="install" aria-labelledby="install-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="install-title">{dict.install.title}</h2>
+      <p>{dict.install.lead}</p>
+    </div>
+    <ol class="install-steps">
+      {
+        dict.install.steps.map((step) => (
+          <li class="install-step">
+            <h3>{step.title}</h3>
+            <CopyBlock cmd={step.cmd} copyLabel={dict.install.copy} copiedLabel={dict.install.copied} />
+            <p>{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="install-docs">
+      {dict.install.docsText}{' '}
+      <a href={product.setupDocUrl} rel="noopener">{dict.install.docsLink}</a>
+    </p>
+    <div class="notice">
+      <p><strong>{dict.install.flatpakTitle}:</strong> {dict.install.flatpakText}</p>
+    </div>
+  </div>
+</section>
+
+{/* ---- Kompatibilität ---- */}
+<section class="section section-alt" id="compat" aria-labelledby="compat-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="compat-title">{dict.compat.title}</h2>
+      <p>{dict.compat.lead}</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{dict.compat.colSystem}</th>
+            <th scope="col">{dict.compat.colSession}</th>
+            <th scope="col">{dict.compat.colStatus}</th>
+            <th scope="col">{dict.compat.colNotes}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            dict.compat.rows.map((row) => (
+              <tr>
+                <th scope="row">{row.system}</th>
+                <td>{row.session}</td>
+                <td>
+                  <span class={row.tested ? 'pill pill-tested' : 'pill pill-untested'}>
+                    {row.tested ? dict.compat.statusTested : dict.compat.statusUntested}
+                  </span>
+                </td>
+                <td>{row.notes}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">{dict.compat.note}</p>
+
+    <h3>{dict.compat.limitsTitle}</h3>
+    <ul class="limits">
+      {dict.compat.limits.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+{/* ---- FAQ ---- */}
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="faq-title">{dict.faq.title}</h2>
+    </div>
+    {
+      dict.faq.items.map((item) => (
+        <details class="faq-item">
+          <summary>{item.q}</summary>
+          <div class="faq-answer">
+            <p>{item.a}</p>
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+{/* ---- Abschluss-CTA ---- */}
+<section class="section section-alt cta" aria-labelledby="cta-title">
+  <div class="container cta-inner">
+    <h2 id="cta-title">{dict.cta.title}</h2>
+    <p>{dict.cta.text}</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="#install">{dict.cta.primary}</a>
+      <a class="btn btn-secondary" href={product.latestReleaseUrl} rel="noopener">{dict.cta.secondary}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Hero ---- */
+  .hero {
+    padding-block: clamp(3rem, 9vw, 6rem);
+    background:
+      radial-gradient(60rem 28rem at 85% -10%, var(--accent-dim), transparent 60%),
+      radial-gradient(40rem 22rem at -10% 20%, var(--gold-dim), transparent 60%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero-inner > *,
+  .flow-inner > *,
+  .lc-grid > * {
+    min-width: 0;
+  }
+
+  .hero-copy .badge {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-lead {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    max-width: 38rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .hero-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.25rem;
+    margin: 2.25rem 0 0;
+  }
+
+  .hero-fact dt {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+  }
+
+  .hero-fact dd {
+    margin: 0.15rem 0 0;
+    font-weight: 600;
+  }
+
+  .hero-shot {
+    justify-self: center;
+    padding: 1.25rem;
+  }
+
+  .hero-shot img {
+    width: min(100%, 280px);
+    height: auto;
+  }
+
+  /* ---- Ablauf ---- */
+  .flow-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .flow-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .flow-steps li {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .flow-num {
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--accent-dim);
+    border: 1px solid rgba(70, 209, 126, 0.4);
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .flow-steps h3 {
+    margin-bottom: 0.25em;
+  }
+
+  .flow-steps p {
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  .flow-shot {
+    justify-self: center;
+  }
+
+  .flow-shot img {
+    width: min(100%, 260px);
+  }
+
+  /* ---- Funktionen ---- */
+  .workflows-title {
+    margin-top: 2.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .table-note {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    max-width: var(--max-prose);
+    margin-top: 0.9rem;
+  }
+
+  /* ---- Screenshots ---- */
+  .shot-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    align-items: start;
+  }
+
+  .shot-grid img {
+    margin-inline: auto;
+  }
+
+  .tray-title {
+    margin-top: 3rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .tray-lead {
+    color: var(--text-muted);
+  }
+
+  .tray-states {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .tray-states li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 1rem;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* ---- Local/Cloud ---- */
+  .lc-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  }
+
+  .lc-card ul {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .lc-local {
+    border-top: 3px solid var(--accent);
+  }
+
+  .lc-cloud {
+    border-top: 3px solid var(--gold);
+  }
+
+  .lc-note {
+    margin-top: 1.5rem;
+  }
+
+  /* ---- Installation ---- */
+  .install-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.75rem;
+    max-width: 52rem;
+  }
+
+  .install-step {
+    /* Grid-Item darf schmaler werden als der Inhalt des Codeblocks */
+    min-width: 0;
+  }
+
+  .install-step h3 {
+    margin-bottom: 0.6rem;
+  }
+
+  .install-step p {
+    color: var(--text-muted);
+    margin: 0.6rem 0 0;
+  }
+
+  .install-docs {
+    margin-top: 2rem;
+    max-width: var(--max-prose);
+  }
+
+  /* ---- Kompatibilität ---- */
+  .limits {
+    color: var(--text-muted);
+    max-width: var(--max-prose);
+  }
+
+  #compat h3 {
+    margin-top: 2.5rem;
+  }
+
+  /* ---- CTA ---- */
+  .cta-inner {
+    text-align: center;
+    max-width: 42rem;
+  }
+
+  .cta-inner p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  /* ---- Responsiv ---- */
+  @media (max-width: 56rem) {
+    .hero-inner,
+    .flow-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-shot,
+    .flow-shot {
+      justify-self: start;
+    }
+  }
+</style>

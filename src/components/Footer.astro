@@ -1,0 +1,133 @@
+---
+import type { Dict } from '../i18n';
+import { langPrefix, type Lang } from '../i18n';
+import { product } from '../data/product';
+
+interface Props {
+  dict: Dict;
+}
+
+const { dict } = Astro.props;
+const home = `${langPrefix(dict.lang as Lang)}/`;
+const privacyUrl = dict.lang === 'de' ? '/datenschutz/' : '/en/privacy/';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href={home} aria-label={dict.nav.homeLabel}>
+          <img src="/brand/logo-mark-dark.svg" alt="" width="30" height="30" />
+          <span>Blitztext Linux</span>
+        </a>
+        <p>{dict.footer.tagline}</p>
+      </div>
+
+      <nav aria-label={dict.footer.productTitle}>
+        <h2>{dict.footer.productTitle}</h2>
+        <ul>
+          <li><a href={product.repoUrl} rel="noopener">{dict.footer.links.repo}</a></li>
+          <li><a href={product.releasesUrl} rel="noopener">{dict.footer.links.releases}</a></li>
+          <li><a href={`${home}#install`}>{dict.footer.links.install}</a></li>
+          <li><a href={product.setupDocUrl} rel="noopener">{dict.footer.links.setupDocs}</a></li>
+          <li><a href={product.licenseUrl} rel="noopener">{dict.footer.links.license}</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label={dict.footer.legalTitle}>
+        <h2>{dict.footer.legalTitle}</h2>
+        <ul>
+          <li><a href={privacyUrl}>{dict.footer.legal.privacy}</a></li>
+          <li><a href="/impressum/">{dict.footer.legal.imprint}</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label={dict.footer.websiteTitle}>
+        <h2>{dict.footer.websiteTitle}</h2>
+        <ul>
+          <li><a href={product.websiteRepoUrl} rel="noopener">{dict.footer.websiteSource}</a></li>
+          <li>
+            <a href={dict.otherLangUrl} lang={dict.lang === 'de' ? 'en' : 'de'}>
+              {dict.nav.langSwitch}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="footer-bottom">
+      © {year} Blitztext Linux · {dict.footer.links.license.replace(' (MIT)', '')}: MIT
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg-elev);
+    padding-block: 3rem 2rem;
+    margin-top: 0;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  }
+
+  .footer-brand {
+    max-width: 20rem;
+  }
+
+  .footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .site-footer h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .site-footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-footer li {
+    margin-bottom: 0.45rem;
+  }
+
+  .site-footer nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .site-footer nav a:hover {
+    color: var(--accent);
+  }
+
+  .footer-bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-faint);
+    font-size: 0.85rem;
+  }
+</style>

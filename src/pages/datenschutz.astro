@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import { dicts } from '../i18n';
+
+const dict = dicts.de;
+const title = 'Datenschutzerklärung – Blitztext Linux';
+const description =
+  'Datenschutzerklärung der statischen Produktwebsite von Blitztext Linux: keine Cookies, kein Tracking, keine Analytics, keine Formulare, keine externen Ressourcen.';
+---
+
+<Base
+  dict={dict}
+  title={title}
+  description={description}
+  path="/datenschutz/"
+  altPath="/en/privacy/"
+  altLang="en"
+>
+  <section class="section">
+    <div class="container prose">
+      <h1>Datenschutzerklärung</h1>
+      <p>
+        Diese Erklärung gilt ausschließlich für die Website
+        <strong>blitztext.timmintech.de</strong>. Sie beschreibt den tatsächlichen
+        technischen Stand dieser statischen Seite.
+      </p>
+
+      <h2>Kurzfassung</h2>
+      <p>Diese Website ist eine rein statische Informationsseite. Sie verwendet:</p>
+      <ul>
+        <li>keine Cookies,</li>
+        <li>keine Analyse- oder Tracking-Dienste (kein Google Analytics, kein Tag Manager, keine Tracking-Pixel),</li>
+        <li>keine Werbung und keine Werbenetzwerke,</li>
+        <li>keine Kontaktformulare und keine Newsletter,</li>
+        <li>keine extern geladenen Schriftarten, Skripte oder Videos – alle Inhalte werden vom eigenen Server ausgeliefert.</li>
+      </ul>
+      <p>
+        Es werden von dieser Website keine personenbezogenen Daten aktiv erhoben,
+        gespeichert oder an Dritte weitergegeben. Ein Cookie-Banner ist daher nicht
+        erforderlich.
+      </p>
+
+      <h2>Server-Logdateien</h2>
+      <p>
+        Beim Aufruf der Website verarbeitet der Hosting-Anbieter technisch bedingt
+        Verbindungsdaten (z.&nbsp;B. IP-Adresse, Zeitpunkt des Abrufs, angeforderte Datei,
+        User-Agent), soweit dies für die Auslieferung der Seite und die Gewährleistung der
+        Systemsicherheit erforderlich ist (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO).
+      </p>
+      <div class="notice" role="note">
+        <p>
+          <strong>⚠ Platzhalter:</strong> <code>[PLATZHALTER: Hosting-Anbieter, Speicherdauer
+          der Server-Logs und ggf. Auftragsverarbeitungsvertrag]</code> – diese Angaben hängen
+          vom später gewählten Hoster ab und müssen vor dem öffentlichen Deployment ergänzt
+          werden.
+        </p>
+      </div>
+
+      <h2>Externe Links</h2>
+      <p>
+        Diese Website verlinkt auf externe Angebote, insbesondere auf GitHub
+        (Quellcode, Releases, Dokumentation). Erst beim Anklicken eines solchen Links
+        verlässt du diese Website; es gelten dann die Datenschutzbestimmungen des jeweiligen
+        Anbieters. Durch das bloße Betrachten dieser Website werden keine Daten an diese
+        Anbieter übertragen.
+      </p>
+
+      <h2>Abgrenzung zur Desktop-App</h2>
+      <p>
+        Diese Erklärung betrifft nur diese Website – <strong>nicht</strong> die
+        Desktop-Anwendung Blitztext Linux. Die App verarbeitet Sprache standardmäßig lokal;
+        optionale Cloud-Funktionen (KI-Workflows, Cloud-TTS) übertragen Text an den vom
+        Nutzer gewählten Anbieter. Details dazu dokumentiert das
+        <a href="https://github.com/TimInTech/blitztext-linux" rel="noopener">App-Repository</a>
+        (u.&nbsp;a. <code>docs/privacy.md</code>).
+      </p>
+
+      <h2>Deine Rechte</h2>
+      <p>
+        Nach der DSGVO stehen dir gegenüber dem Verantwortlichen u.&nbsp;a. Rechte auf
+        Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung zu, sowie ein
+        Beschwerderecht bei einer Aufsichtsbehörde. Der Verantwortliche ist im
+        <a href="/impressum/">Impressum</a> benannt.
+      </p>
+    </div>
+  </section>
+</Base>

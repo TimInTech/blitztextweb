@@ -1,0 +1,85 @@
+---
+import Base from '../../layouts/Base.astro';
+import { dicts } from '../../i18n';
+
+const dict = dicts.en;
+const title = 'Privacy Policy – Blitztext Linux';
+const description =
+  'Privacy policy of the static Blitztext Linux product website: no cookies, no tracking, no analytics, no forms, no external resources.';
+---
+
+<Base
+  dict={dict}
+  title={title}
+  description={description}
+  path="/en/privacy/"
+  altPath="/datenschutz/"
+  altLang="de"
+>
+  <section class="section">
+    <div class="container prose">
+      <h1>Privacy Policy</h1>
+      <p>
+        This policy applies exclusively to the website
+        <strong>blitztext.timmintech.de</strong>. It describes the actual technical state
+        of this static site.
+      </p>
+
+      <h2>Summary</h2>
+      <p>This website is a purely static information page. It uses:</p>
+      <ul>
+        <li>no cookies,</li>
+        <li>no analytics or tracking services (no Google Analytics, no tag manager, no tracking pixels),</li>
+        <li>no advertising and no ad networks,</li>
+        <li>no contact forms and no newsletters,</li>
+        <li>no externally loaded fonts, scripts, or videos – all content is served from this site’s own server.</li>
+      </ul>
+      <p>
+        This website does not actively collect, store, or share any personal data.
+        No cookie banner is therefore required.
+      </p>
+
+      <h2>Server log files</h2>
+      <p>
+        When you visit the website, the hosting provider technically processes connection
+        data (e.g. IP address, time of access, requested file, user agent) to the extent
+        required to deliver the page and ensure system security
+        (Art.&nbsp;6(1)(f) GDPR).
+      </p>
+      <div class="notice" role="note">
+        <p>
+          <strong>⚠ Placeholder:</strong> <code>[PLACEHOLDER: hosting provider, server log
+          retention period, and data processing agreement if applicable]</code> – these
+          details depend on the hosting provider chosen later and must be completed before
+          the public deployment.
+        </p>
+      </div>
+
+      <h2>External links</h2>
+      <p>
+        This website links to external services, in particular GitHub (source code,
+        releases, documentation). Only when you click such a link do you leave this
+        website; the privacy terms of the respective provider then apply. Merely viewing
+        this website does not transmit any data to those providers.
+      </p>
+
+      <h2>Distinction from the desktop app</h2>
+      <p>
+        This policy covers this website only – <strong>not</strong> the Blitztext Linux
+        desktop application. The app processes speech locally by default; optional cloud
+        features (AI workflows, cloud TTS) transmit text to the provider selected by the
+        user. Details are documented in the
+        <a href="https://github.com/TimInTech/blitztext-linux" rel="noopener">app repository</a>
+        (including <code>docs/privacy.md</code>).
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        Under the GDPR you have, among others, the rights to access, rectification,
+        erasure, and restriction of processing, as well as the right to lodge a complaint
+        with a supervisory authority. The controller is named in the
+        <a href="/impressum/">imprint (German)</a>.
+      </p>
+    </div>
+  </section>
+</Base>

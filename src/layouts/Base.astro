@@ -1,0 +1,101 @@
+---
+import type { Dict } from '../i18n';
+import { product } from '../data/product';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  dict: Dict;
+  title: string;
+  description: string;
+  /** Pfad dieser Seite, z. B. '/', '/en/', '/datenschutz/' */
+  path: string;
+  /** Pfad der anderssprachigen Fassung (für hreflang + Sprachumschalter); null = keine Entsprechung */
+  altPath?: string | null;
+  /** hreflang der anderssprachigen Fassung */
+  altLang?: 'de' | 'en';
+  /** JSON-LD SoftwareApplication nur auf den Startseiten ausgeben */
+  includeAppSchema?: boolean;
+}
+
+const {
+  dict,
+  title,
+  description,
+  path,
+  altPath = null,
+  altLang,
+  includeAppSchema = false,
+} = Astro.props;
+
+const canonical = new URL(path, product.siteUrl).href;
+const altUrl = altPath !== null ? new URL(altPath, product.siteUrl).href : null;
+const ogImage = new URL(dict.meta.ogImage, product.siteUrl).href;
+// x-default zeigt auf die deutsche Fassung (Standardsprache der Domain)
+const xDefault = dict.lang === 'de' ? canonical : altUrl;
+
+// Strukturierte Daten: ausschließlich im App-Repository bestätigte Angaben.
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: product.name,
+  operatingSystem: 'Linux',
+  applicationCategory: 'UtilitiesApplication',
+  softwareVersion: product.version,
+  license: product.licenseUrl,
+  url: product.siteUrl,
+  downloadUrl: product.releasesUrl,
+  softwareHelp: product.setupDocUrl,
+  sameAs: product.repoUrl,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+};
+---
+
+<html lang={dict.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="alternate" hreflang={dict.htmlLang} href={canonical} />
+    {altUrl && altLang && <link rel="alternate" hreflang={altLang} href={altUrl} />}
+    {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={product.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content={dict.meta.ogImageAlt} />
+    <meta property="og:locale" content={dict.lang === 'de' ? 'de_DE' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="generator" content={Astro.generator} />
+
+    {
+      includeAppSchema && (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(appSchema)} />
+      )
+    }
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{dict.skipLink}</a>
+    <Header dict={dict} altUrl={altPath ?? dict.otherLangUrl} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer dict={dict} />
+  </body>
+</html>

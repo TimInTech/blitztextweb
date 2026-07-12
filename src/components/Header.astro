@@ -1,0 +1,247 @@
+---
+import type { Dict } from '../i18n';
+import { langPrefix, type Lang } from '../i18n';
+import { product } from '../data/product';
+
+interface Props {
+  dict: Dict;
+  /** Ziel des Sprachumschalters */
+  altUrl: string;
+}
+
+const { dict, altUrl } = Astro.props;
+const home = `${langPrefix(dict.lang as Lang)}/`;
+
+const navItems = [
+  { href: `${home}#features`, label: dict.nav.features },
+  { href: `${home}#flow`, label: dict.nav.flow },
+  { href: `${home}#screenshots`, label: dict.nav.screenshots },
+  { href: `${home}#install`, label: dict.nav.install },
+  { href: `${home}#faq`, label: dict.nav.faq },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={home} aria-label={dict.nav.homeLabel}>
+      <img src="/brand/logo-mark-dark.svg" alt="" width="34" height="34" />
+      <span class="brand-name">Blitztext <span class="brand-linux">Linux</span></span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      data-label-open={dict.nav.menuOpen}
+      data-label-close={dict.nav.menuClose}
+      aria-label={dict.nav.menuOpen}
+    >
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label={dict.nav.menuLabel}>
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+        <li>
+          <a href={product.repoUrl} aria-label={dict.nav.githubLabel} rel="noopener">
+            {dict.nav.github}
+          </a>
+        </li>
+        <li class="lang-item">
+          <a class="lang-switch" href={altUrl} lang={dict.lang === 'de' ? 'en' : 'de'} aria-label={dict.nav.langSwitchLabel}>
+            {dict.nav.langSwitch}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(13, 17, 19, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .brand:hover {
+    color: var(--text);
+  }
+
+  .brand-linux {
+    color: var(--accent);
+  }
+
+  .site-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-nav li {
+    margin: 0;
+  }
+
+  .site-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .site-nav a:hover {
+    color: var(--text);
+  }
+
+  .lang-switch {
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+  }
+
+  .lang-switch:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.6rem;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 47.9rem) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .site-nav {
+      display: none;
+      width: 100%;
+    }
+
+    .site-nav.is-open {
+      display: block;
+    }
+
+    .site-nav ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding-block: 0.5rem 1rem;
+    }
+
+    .site-nav a {
+      display: block;
+      padding: 0.7rem 0.25rem;
+      font-size: 1.05rem;
+    }
+
+    .lang-item {
+      margin-top: 0.5rem;
+    }
+
+    .lang-switch {
+      display: inline-block;
+    }
+  }
+</style>
+
+<script>
+  // Mobile Navigation: Toggle mit korrektem aria-expanded, Esc schließt,
+  // Klick auf einen Link schließt ebenfalls. Keine Tastaturfalle –
+  // der Fokus bleibt im normalen Dokumentfluss.
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+
+  if (toggle && nav) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute(
+        'aria-label',
+        open ? toggle.dataset.labelClose ?? '' : toggle.dataset.labelOpen ?? ''
+      );
+      nav.classList.toggle('is-open', open);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    nav.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }
+</script>

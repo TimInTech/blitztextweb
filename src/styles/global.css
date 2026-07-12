@@ -1,0 +1,510 @@
+/* ==========================================================================
+   Blitztext Linux – globale Styles
+   Dark Design: Anthrazit/Graphit-Flächen, grüner Primärakzent,
+   Gold-Blitz (#e0a90f) aus dem App-Logo als Sekundärakzent.
+   ========================================================================== */
+
+/* ---- Design-Tokens ------------------------------------------------------ */
+:root {
+  /* Flächen */
+  --bg: #0d1113;
+  --bg-elev: #14191c;
+  --bg-elev-2: #1a2024;
+  --border: #262d31;
+  --border-strong: #333d43;
+
+  /* Text */
+  --text: #e8ecee;
+  --text-muted: #a3aeb5;
+  --text-faint: #7d8890;
+
+  /* Akzente */
+  --accent: #46d17e;            /* Grün – angelehnt an den „Bereit“-Status der App */
+  --accent-hover: #63e094;
+  --accent-ink: #08130c;        /* dunkle Schrift auf grünen Flächen */
+  --accent-dim: rgba(70, 209, 126, 0.1);
+  --gold: #e0a90f;              /* Blitz aus dem Blitztext-Logo */
+  --gold-dim: rgba(224, 169, 15, 0.12);
+
+  /* Status/Warnung (Flatpak-Hinweis, Platzhalter) */
+  --warn: #e8b93c;
+  --warn-dim: rgba(232, 185, 60, 0.1);
+
+  /* Typografie: Systemschriften, keine externen Fonts */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans',
+    Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo,
+    Consolas, 'Liberation Mono', monospace;
+
+  /* Layout */
+  --max-width: 72rem;
+  --max-prose: 46rem;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.25);
+
+  color-scheme: dark;
+}
+
+/* ---- Reset & Basis ------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Sticky-Header nicht über Ankerziele legen */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---- Typografie --------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+  margin: 0 0 0.6em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  /* lange deutsche Komposita („Datenschutzerklärung“) auf schmalen Screens umbrechen */
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+h1 {
+  font-size: clamp(2rem, 5.5vw, 3.25rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+}
+
+h3 {
+  font-size: 1.175rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  overflow-wrap: break-word;
+}
+
+ul {
+  padding-left: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.4em;
+}
+
+/* ---- Fokus: deutlich sichtbar ------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Skip-Link ----------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus-visible {
+  top: 0.75rem;
+  color: var(--accent-ink);
+}
+
+/* ---- Layout-Bausteine ---------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.section {
+  padding-block: clamp(3rem, 8vw, 5.5rem);
+}
+
+.section-alt {
+  background: var(--bg-elev);
+  border-block: 1px solid var(--border);
+}
+
+.section-head {
+  max-width: var(--max-prose);
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.section-head p {
+  color: var(--text-muted);
+  font-size: 1.075rem;
+  margin-bottom: 0;
+}
+
+.prose {
+  max-width: var(--max-prose);
+}
+
+.prose h2 {
+  margin-top: 2em;
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+/* ---- Karten -------------------------------------------------------------- */
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  margin-bottom: 0.4em;
+}
+
+.card p {
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+/* ---- Buttons -------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--accent-ink);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- Badges / Hinweise ----------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid rgba(70, 209, 126, 0.35);
+  text-decoration: none;
+}
+
+.badge:hover {
+  color: var(--accent-hover);
+}
+
+.notice {
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--warn);
+  background: var(--warn-dim);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  max-width: var(--max-prose);
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Tabellen -------------------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  min-width: 38rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--bg-elev-2);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Status-Pills: Information zusätzlich über Text, nicht nur über Farbe */
+.pill {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.pill-tested {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid rgba(70, 209, 126, 0.35);
+}
+
+.pill-untested {
+  background: var(--bg-elev-2);
+  color: var(--text-muted);
+  border: 1px solid var(--border-strong);
+}
+
+/* ---- Codeblöcke mit Copy-Button --------------------------------------------- */
+.codeblock {
+  position: relative;
+  background: #0a0e10;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: 0;
+}
+
+.codeblock pre {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  padding-right: 3.25rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.codeblock code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--bg-elev-2);
+  color: var(--text-muted);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.copy-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.copy-btn[data-copied='true'] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---- Screenshot-Rahmen ------------------------------------------------------- */
+.shot {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  box-shadow: var(--shadow);
+}
+
+.shot img {
+  border-radius: var(--radius-sm);
+  margin-inline: auto;
+}
+
+figcaption {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+/* ---- FAQ (native details) ------------------------------------------------------ */
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elev);
+  margin-bottom: 0.75rem;
+  max-width: var(--max-prose);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 1rem 1.25rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.3rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item .faq-answer {
+  padding: 0 1.25rem 1rem;
+  color: var(--text-muted);
+}
+
+.faq-item .faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Dezente Einblendung (nur bei erlaubter Bewegung) ---------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fade-in 0.5s ease-out both;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ---- Bewegung reduzieren: alles abschaltbar ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

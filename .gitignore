@@ -1,0 +1,14 @@
+# Build-Ausgabe
+dist/
+
+# Abhängigkeiten
+node_modules/
+
+# Astro-Generate
+.astro/
+
+# Logs
+npm-debug.log*
+
+# Editor/OS
+.DS_Store

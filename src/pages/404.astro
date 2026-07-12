@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import { dicts } from '../i18n';
+
+// Fehlerseite: deutschsprachig als Standard, mit klar gekennzeichnetem
+// englischem Absatz – statisch, ohne Weiterleitung.
+const dict = dicts.de;
+const title = 'Seite nicht gefunden – Blitztext Linux';
+const description = 'Die angeforderte Seite existiert nicht. / The requested page does not exist.';
+---
+
+<Base dict={dict} title={title} description={description} path="/404.html" altPath={null}>
+  <section class="section">
+    <div class="container prose not-found">
+      <p class="code" aria-hidden="true">404</p>
+      <h1>{dict.notFound.title}</h1>
+      <p>{dict.notFound.text}</p>
+      <p lang="en">Page not found – the requested page does not exist or has been moved.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/">{dict.notFound.back}</a>
+        <a class="btn btn-secondary" href="/en/" lang="en">{dict.notFound.backEn}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .not-found {
+    text-align: center;
+    margin-inline: auto;
+    padding-block: 3rem;
+  }
+
+  .code {
+    font-family: var(--font-mono);
+    font-size: clamp(3.5rem, 12vw, 6rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0;
+    line-height: 1;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+</style>

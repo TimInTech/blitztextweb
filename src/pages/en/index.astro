@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import Landing from '../../components/Landing.astro';
+import { dicts } from '../../i18n';
+
+const dict = dicts.en;
+---
+
+<Base
+  dict={dict}
+  title={dict.meta.title}
+  description={dict.meta.description}
+  path="/en/"
+  altPath="/"
+  altLang="de"
+  includeAppSchema
+>
+  <Landing dict={dict} />
+</Base>

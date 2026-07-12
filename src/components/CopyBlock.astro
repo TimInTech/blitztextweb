@@ -1,0 +1,76 @@
+---
+/**
+ * Terminalbefehl mit Copy-Schaltfläche.
+ * Der Button erhält sein Feedback über data-copied + aria-live.
+ */
+interface Props {
+  cmd: string;
+  copyLabel: string;
+  copiedLabel: string;
+}
+
+const { cmd, copyLabel, copiedLabel } = Astro.props;
+---
+
+<figure class="codeblock">
+  <pre><code>{cmd}</code></pre>
+  <button
+    type="button"
+    class="copy-btn"
+    data-copy={cmd}
+    data-label-copied={copiedLabel}
+    aria-label={copyLabel}
+    title={copyLabel}
+  >
+    <span aria-hidden="true">⧉</span>
+    <span class="visually-hidden" aria-live="polite"></span>
+  </button>
+</figure>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script>
+  // Ein Handler für alle Copy-Buttons der Seite; Feedback visuell (✓)
+  // und für Screenreader über die aria-live-Region.
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        // Fallback für Kontexte ohne Clipboard-API (z. B. file://)
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      btn.dataset.copied = 'true';
+      const icon = btn.querySelector('[aria-hidden]');
+      const live = btn.querySelector('[aria-live]');
+      if (icon) icon.textContent = '✓';
+      if (live) live.textContent = btn.dataset.labelCopied ?? '';
+      window.setTimeout(() => {
+        delete btn.dataset.copied;
+        if (icon) icon.textContent = '⧉';
+        if (live) live.textContent = '';
+      }, 2000);
+    });
+  });
+</script>

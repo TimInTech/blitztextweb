@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import { dicts } from '../i18n';
+
+const dict = dicts.de;
+const title = 'Impressum – Blitztext Linux';
+const description =
+  'Impressum der Produktwebsite von Blitztext Linux (Vorlage – Angaben werden vor Veröffentlichung ergänzt).';
+---
+
+<Base dict={dict} title={title} description={description} path="/impressum/" altPath={null}>
+  <section class="section">
+    <div class="container prose">
+      <h1>Impressum</h1>
+
+      <div class="notice" role="note">
+        <p>
+          <strong>⚠ Vorlage – noch nicht veröffentlichungsreif.</strong>
+          Die mit <code>[PLATZHALTER]</code> markierten Angaben sind rechtlich erforderlich
+          (u.&nbsp;a. nach §&nbsp;5 DDG) und müssen vor dem öffentlichen Deployment dieser
+          Website durch den Betreiber ergänzt werden. Es wurden bewusst keine Namen,
+          Anschriften oder Kontaktdaten erfunden.
+        </p>
+      </div>
+
+      <h2>Angaben gemäß §&nbsp;5 DDG</h2>
+      <p>
+        <code>[PLATZHALTER: Vor- und Nachname des Betreibers]</code><br />
+        <code>[PLATZHALTER: Straße und Hausnummer]</code><br />
+        <code>[PLATZHALTER: Postleitzahl und Ort]</code><br />
+        <code>[PLATZHALTER: Land]</code>
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        E-Mail: <code>[PLATZHALTER: E-Mail-Adresse]</code>
+      </p>
+
+      <h2>Verantwortlich für den Inhalt</h2>
+      <p>
+        <code>[PLATZHALTER: Verantwortliche Person mit Anschrift, sofern abweichend]</code>
+      </p>
+
+      <h2>Hinweis zum Projekt</h2>
+      <p>
+        Diese Website ist die Produktseite des Open-Source-Projekts
+        <a href="https://github.com/TimInTech/blitztext-linux" rel="noopener">Blitztext Linux</a>
+        (MIT-Lizenz). Sie ist ein nicht-kommerzielles Projektangebot. Der Quellcode dieser
+        Website ist öffentlich unter
+        <a href="https://github.com/TimInTech/blitztextweb" rel="noopener">TimInTech/blitztextweb</a>
+        einsehbar.
+      </p>
+
+      <h2>Haftung für Links</h2>
+      <p>
+        Diese Website verlinkt auf externe Seiten Dritter (insbesondere GitHub), auf deren
+        Inhalte kein Einfluss besteht. Für die Inhalte der verlinkten Seiten ist stets der
+        jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Zum Zeitpunkt der
+        Verlinkung waren keine rechtswidrigen Inhalte erkennbar.
+      </p>
+    </div>
+  </section>
+</Base>
