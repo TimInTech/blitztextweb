@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://blitztext.timmintech.de/sitemap-index.xml
+Sitemap: https://blitztext.timintech.de/sitemap-index.xml

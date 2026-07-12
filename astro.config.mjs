@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blitztext.timmintech.de',
+  site: 'https://blitztext.timintech.de',
   output: 'static',
   trailingSlash: 'ignore',
   integrations: [

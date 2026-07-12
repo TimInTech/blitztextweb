@@ -1,7 +1,7 @@
 # blitztextweb
 
 Statische Produktwebsite für [Blitztext Linux](https://github.com/TimInTech/blitztext-linux) –
-vorgesehen für die Domain `https://blitztext.timmintech.de`.
+vorgesehen für die Domain `https://blitztext.timintech.de`.
 
 Dieses Repository enthält **ausschließlich die Website**. Die Desktop-App lebt im
 getrennten Repository [TimInTech/blitztext-linux](https://github.com/TimInTech/blitztext-linux).
