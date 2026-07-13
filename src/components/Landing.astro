@@ -1,6 +1,7 @@
 ---
 import type { Dict } from '../i18n';
 import { product } from '../data/product';
+import { withBase } from '../utils/base';
 import CopyBlock from './CopyBlock.astro';
 
 interface Props {
@@ -38,7 +39,7 @@ const recordingShot = dict.screenshots.items[1]!;
       </dl>
     </div>
     <figure class="hero-shot shot">
-      <img src={heroShot.src} alt={dict.hero.imgAlt} width="256" height="259" loading="eager" />
+      <img src={withBase(heroShot.src)} alt={dict.hero.imgAlt} width="256" height="259" loading="eager" />
       <figcaption>{dict.hero.imgCaption}</figcaption>
     </figure>
   </div>
@@ -85,7 +86,7 @@ const recordingShot = dict.screenshots.items[1]!;
       </ol>
     </div>
     <figure class="flow-shot shot">
-      <img src={recordingShot.src} alt={dict.flow.imgAlt} width="256" height="259" loading="lazy" />
+      <img src={withBase(recordingShot.src)} alt={dict.flow.imgAlt} width="256" height="259" loading="lazy" />
       <figcaption>{recordingShot.caption}</figcaption>
     </figure>
   </div>
@@ -149,7 +150,7 @@ const recordingShot = dict.screenshots.items[1]!;
       {
         dict.screenshots.items.map((item) => (
           <figure class="shot">
-            <img src={item.src} alt={item.alt} loading="lazy" />
+            <img src={withBase(item.src)} alt={item.alt} loading="lazy" />
             <figcaption>{item.caption}</figcaption>
           </figure>
         ))
@@ -162,7 +163,7 @@ const recordingShot = dict.screenshots.items[1]!;
       {
         dict.screenshots.trayStates.map((state) => (
           <li>
-            <img src={state.src} alt={state.alt} width="48" height="48" loading="lazy" />
+            <img src={withBase(state.src)} alt={state.alt} width="48" height="48" loading="lazy" />
             <span>{state.label}</span>
           </li>
         ))

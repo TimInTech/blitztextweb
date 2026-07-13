@@ -9,7 +9,9 @@ export const product = {
   version: '0.8.1',
   license: 'MIT',
   os: 'Linux',
-  siteUrl: 'https://blitztext.timintech.de',
+  // Origin der GitHub-Pages-Auslieferung. Der Unterpfad (`base`) wird zentral
+  // über `withBase` bzw. `import.meta.env.BASE_URL` ergänzt.
+  siteUrl: 'https://timintech.github.io',
   repoUrl: 'https://github.com/TimInTech/blitztext-linux',
   releasesUrl: 'https://github.com/TimInTech/blitztext-linux/releases',
   latestReleaseUrl: 'https://github.com/TimInTech/blitztext-linux/releases/tag/v0.8.1',

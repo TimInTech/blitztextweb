@@ -1,6 +1,7 @@
 ---
 import type { Dict } from '../i18n';
 import { product } from '../data/product';
+import { withBase } from '../utils/base';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -29,10 +30,12 @@ const {
   includeAppSchema = false,
 } = Astro.props;
 
-const canonical = new URL(path, product.siteUrl).href;
-const altUrl = altPath !== null ? new URL(altPath, product.siteUrl).href : null;
-const ogImage = new URL(dict.meta.ogImage, product.siteUrl).href;
-// x-default zeigt auf die deutsche Fassung (Standardsprache der Domain)
+// Alle absoluten URLs enthalten den GitHub-Pages-Unterpfad (`base`).
+const canonical = new URL(withBase(path), product.siteUrl).href;
+const altUrl = altPath !== null ? new URL(withBase(altPath), product.siteUrl).href : null;
+const ogImage = new URL(withBase(dict.meta.ogImage), product.siteUrl).href;
+const siteHome = new URL(withBase('/'), product.siteUrl).href;
+// x-default zeigt auf die deutsche Fassung (Standardsprache der Website)
 const xDefault = dict.lang === 'de' ? canonical : altUrl;
 
 // Strukturierte Daten: ausschließlich im App-Repository bestätigte Angaben.
@@ -44,7 +47,7 @@ const appSchema = {
   applicationCategory: 'UtilitiesApplication',
   softwareVersion: product.version,
   license: product.licenseUrl,
-  url: product.siteUrl,
+  url: siteHome,
   downloadUrl: product.releasesUrl,
   softwareHelp: product.setupDocUrl,
   sameAs: product.repoUrl,
@@ -63,8 +66,8 @@ const appSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
 
     <link rel="alternate" hreflang={dict.htmlLang} href={canonical} />
     {altUrl && altLang && <link rel="alternate" hreflang={altLang} href={altUrl} />}
@@ -92,7 +95,7 @@ const appSchema = {
   </head>
   <body>
     <a class="skip-link" href="#main">{dict.skipLink}</a>
-    <Header dict={dict} altUrl={altPath ?? dict.otherLangUrl} />
+    <Header dict={dict} altUrl={withBase(altPath ?? dict.otherLangUrl)} />
     <main id="main">
       <slot />
     </main>

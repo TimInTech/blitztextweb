@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { dicts } from '../../i18n';
+import { withBase } from '../../utils/base';
 
 const dict = dicts.en;
 const title = 'Privacy Policy – Blitztext Linux';
@@ -21,8 +22,8 @@ const description =
       <h1>Privacy Policy</h1>
       <p>
         This policy applies exclusively to the website
-        <strong>blitztext.timintech.de</strong>. It describes the actual technical state
-        of this static site.
+        <strong>timintech.github.io/blitztextweb</strong>. It describes the actual technical
+        state of this static site.
       </p>
 
       <h2>Summary</h2>
@@ -39,21 +40,23 @@ const description =
         No cookie banner is therefore required.
       </p>
 
-      <h2>Server log files</h2>
+      <h2>Hosting and server log files</h2>
       <p>
-        When you visit the website, the hosting provider technically processes connection
-        data (e.g. IP address, time of access, requested file, user agent) to the extent
-        required to deliver the page and ensure system security
-        (Art.&nbsp;6(1)(f) GDPR).
+        This website is served via <strong>GitHub Pages</strong>, a service provided by
+        GitHub,&nbsp;Inc. (88&nbsp;Colin&nbsp;P.&nbsp;Kelly&nbsp;Jr.&nbsp;Street,
+        San&nbsp;Francisco, CA&nbsp;94107, USA). When you visit the website, GitHub as the
+        hosting provider technically processes connection data (e.g. IP address, time of
+        access, requested file, user agent) to the extent required to deliver the page and
+        ensure system security (Art.&nbsp;6(1)(f) GDPR).
       </p>
-      <div class="notice" role="note">
-        <p>
-          <strong>⚠ Placeholder:</strong> <code>[PLACEHOLDER: hosting provider, server log
-          retention period, and data processing agreement if applicable]</code> – these
-          details depend on the hosting provider chosen later and must be completed before
-          the public deployment.
-        </p>
-      </div>
+      <p>
+        Details on GitHub's data processing are set out in the
+        <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" rel="noopener">GitHub Privacy Statement</a>;
+        information specific to GitHub Pages is provided in the
+        <a href="https://docs.github.com/pages/getting-started-with-github-pages/about-github-pages" rel="noopener">GitHub Pages documentation</a>.
+        Only the information published there by GitHub applies to retention periods and any
+        contractual basis.
+      </p>
 
       <h2>External links</h2>
       <p>
@@ -78,7 +81,7 @@ const description =
         Under the GDPR you have, among others, the rights to access, rectification,
         erasure, and restriction of processing, as well as the right to lodge a complaint
         with a supervisory authority. The controller is named in the
-        <a href="/impressum/">imprint (German)</a>.
+        <a href={withBase('/impressum/')}>imprint (German)</a>.
       </p>
     </div>
   </section>
