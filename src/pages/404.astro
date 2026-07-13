@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { dicts } from '../i18n';
+import { withBase } from '../utils/base';
 
 // Fehlerseite: deutschsprachig als Standard, mit klar gekennzeichnetem
 // englischem Absatz – statisch, ohne Weiterleitung.
@@ -17,8 +18,8 @@ const description = 'Die angeforderte Seite existiert nicht. / The requested pag
       <p>{dict.notFound.text}</p>
       <p lang="en">Page not found – the requested page does not exist or has been moved.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="/">{dict.notFound.back}</a>
-        <a class="btn btn-secondary" href="/en/" lang="en">{dict.notFound.backEn}</a>
+        <a class="btn btn-primary" href={withBase('/')}>{dict.notFound.back}</a>
+        <a class="btn btn-secondary" href={withBase('/en/')} lang="en">{dict.notFound.backEn}</a>
       </div>
     </div>
   </section>

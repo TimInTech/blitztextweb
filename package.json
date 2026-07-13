@@ -2,7 +2,7 @@
   "name": "blitztextweb",
   "version": "1.0.0",
   "private": true,
-  "description": "Static product website for Blitztext Linux (blitztext.timintech.de)",
+  "description": "Static product website for Blitztext Linux (https://timintech.github.io/blitztextweb/)",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

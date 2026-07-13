@@ -2,15 +2,16 @@
 import type { Dict } from '../i18n';
 import { langPrefix, type Lang } from '../i18n';
 import { product } from '../data/product';
+import { withBase } from '../utils/base';
 
 interface Props {
   dict: Dict;
-  /** Ziel des Sprachumschalters */
+  /** Ziel des Sprachumschalters (bereits mit Base-URL präfixiert) */
   altUrl: string;
 }
 
 const { dict, altUrl } = Astro.props;
-const home = `${langPrefix(dict.lang as Lang)}/`;
+const home = withBase(`${langPrefix(dict.lang as Lang)}/`);
 
 const navItems = [
   { href: `${home}#features`, label: dict.nav.features },
@@ -24,7 +25,7 @@ const navItems = [
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href={home} aria-label={dict.nav.homeLabel}>
-      <img src="/brand/logo-mark-dark.svg" alt="" width="34" height="34" />
+      <img src={withBase('/brand/logo-mark-dark.svg')} alt="" width="34" height="34" />
       <span class="brand-name">Blitztext <span class="brand-linux">Linux</span></span>
     </a>
 

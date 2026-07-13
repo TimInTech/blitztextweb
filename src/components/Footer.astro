@@ -2,14 +2,17 @@
 import type { Dict } from '../i18n';
 import { langPrefix, type Lang } from '../i18n';
 import { product } from '../data/product';
+import { withBase } from '../utils/base';
 
 interface Props {
   dict: Dict;
 }
 
 const { dict } = Astro.props;
-const home = `${langPrefix(dict.lang as Lang)}/`;
-const privacyUrl = dict.lang === 'de' ? '/datenschutz/' : '/en/privacy/';
+const home = withBase(`${langPrefix(dict.lang as Lang)}/`);
+const privacyUrl = withBase(dict.lang === 'de' ? '/datenschutz/' : '/en/privacy/');
+const imprintUrl = withBase('/impressum/');
+const otherLangUrl = withBase(dict.otherLangUrl);
 const year = new Date().getFullYear();
 ---
 
@@ -18,7 +21,7 @@ const year = new Date().getFullYear();
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="brand" href={home} aria-label={dict.nav.homeLabel}>
-          <img src="/brand/logo-mark-dark.svg" alt="" width="30" height="30" />
+          <img src={withBase('/brand/logo-mark-dark.svg')} alt="" width="30" height="30" />
           <span>Blitztext Linux</span>
         </a>
         <p>{dict.footer.tagline}</p>
@@ -39,7 +42,7 @@ const year = new Date().getFullYear();
         <h2>{dict.footer.legalTitle}</h2>
         <ul>
           <li><a href={privacyUrl}>{dict.footer.legal.privacy}</a></li>
-          <li><a href="/impressum/">{dict.footer.legal.imprint}</a></li>
+          <li><a href={imprintUrl}>{dict.footer.legal.imprint}</a></li>
         </ul>
       </nav>
 
@@ -47,7 +50,7 @@ const year = new Date().getFullYear();
         <h2>{dict.footer.websiteTitle}</h2>
         <ul>
           <li>
-            <a href={dict.otherLangUrl} lang={dict.lang === 'de' ? 'en' : 'de'}>
+            <a href={otherLangUrl} lang={dict.lang === 'de' ? 'en' : 'de'}>
               {dict.nav.langSwitch}
             </a>
           </li>

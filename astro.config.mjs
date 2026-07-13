@@ -2,8 +2,11 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
+// Auslieferung als GitHub-Pages-Project-Page unter
+// https://timintech.github.io/blitztextweb/ (Unterpfad, kein Domain-Root).
 export default defineConfig({
-  site: 'https://blitztext.timintech.de',
+  site: 'https://timintech.github.io',
+  base: '/blitztextweb',
   output: 'static',
   trailingSlash: 'ignore',
   integrations: [
@@ -13,7 +16,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    // saubere /pfad/index.html-Ausgabe für statisches Hosting am Domain-Root
+    // saubere /pfad/index.html-Ausgabe für statisches Hosting
     format: 'directory',
   },
 });

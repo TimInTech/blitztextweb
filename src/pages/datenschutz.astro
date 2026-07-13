@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { dicts } from '../i18n';
+import { withBase } from '../utils/base';
 
 const dict = dicts.de;
 const title = 'Datenschutzerklärung – Blitztext Linux';
@@ -21,8 +22,8 @@ const description =
       <h1>Datenschutzerklärung</h1>
       <p>
         Diese Erklärung gilt ausschließlich für die Website
-        <strong>blitztext.timintech.de</strong>. Sie beschreibt den tatsächlichen
-        technischen Stand dieser statischen Seite.
+        <strong>timintech.github.io/blitztextweb</strong>. Sie beschreibt den
+        tatsächlichen technischen Stand dieser statischen Seite.
       </p>
 
       <h2>Kurzfassung</h2>
@@ -40,21 +41,24 @@ const description =
         erforderlich.
       </p>
 
-      <h2>Server-Logdateien</h2>
+      <h2>Hosting und Server-Logdateien</h2>
       <p>
-        Beim Aufruf der Website verarbeitet der Hosting-Anbieter technisch bedingt
-        Verbindungsdaten (z.&nbsp;B. IP-Adresse, Zeitpunkt des Abrufs, angeforderte Datei,
-        User-Agent), soweit dies für die Auslieferung der Seite und die Gewährleistung der
-        Systemsicherheit erforderlich ist (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO).
+        Diese Website wird über <strong>GitHub Pages</strong> ausgeliefert, einen Dienst der
+        GitHub,&nbsp;Inc. (88&nbsp;Colin&nbsp;P.&nbsp;Kelly&nbsp;Jr.&nbsp;Street,
+        San&nbsp;Francisco, CA&nbsp;94107, USA). Beim Aufruf der Website verarbeitet GitHub als
+        Hosting-Anbieter technisch bedingt Verbindungsdaten (z.&nbsp;B. IP-Adresse, Zeitpunkt
+        des Abrufs, angeforderte Datei, User-Agent), soweit dies für die Auslieferung der Seite
+        und die Gewährleistung der Systemsicherheit erforderlich ist
+        (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO).
       </p>
-      <div class="notice" role="note">
-        <p>
-          <strong>⚠ Platzhalter:</strong> <code>[PLATZHALTER: Hosting-Anbieter, Speicherdauer
-          der Server-Logs und ggf. Auftragsverarbeitungsvertrag]</code> – diese Angaben hängen
-          vom später gewählten Hoster ab und müssen vor dem öffentlichen Deployment ergänzt
-          werden.
-        </p>
-      </div>
+      <p>
+        Einzelheiten zur Datenverarbeitung durch GitHub regelt die
+        <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" rel="noopener">GitHub-Datenschutzerklärung</a>;
+        Hinweise speziell zu GitHub Pages enthält die
+        <a href="https://docs.github.com/pages/getting-started-with-github-pages/about-github-pages" rel="noopener">GitHub-Pages-Dokumentation</a>.
+        Zu Speicherdauer und etwaigen vertraglichen Grundlagen gelten ausschließlich die dort
+        von GitHub veröffentlichten Angaben.
+      </p>
 
       <h2>Externe Links</h2>
       <p>
@@ -80,7 +84,7 @@ const description =
         Nach der DSGVO stehen dir gegenüber dem Verantwortlichen u.&nbsp;a. Rechte auf
         Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung zu, sowie ein
         Beschwerderecht bei einer Aufsichtsbehörde. Der Verantwortliche ist im
-        <a href="/impressum/">Impressum</a> benannt.
+        <a href={withBase('/impressum/')}>Impressum</a> benannt.
       </p>
     </div>
   </section>

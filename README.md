@@ -1,7 +1,7 @@
 # blitztextweb
 
-Statische Produktwebsite für [Blitztext Linux](https://github.com/TimInTech/blitztext-linux) –
-vorgesehen für die Domain `https://blitztext.timintech.de`.
+Statische Produktwebsite für [Blitztext Linux](https://github.com/TimInTech/blitztext-linux),
+veröffentlicht über GitHub Pages unter `https://timintech.github.io/blitztextweb/`.
 
 Dieses Repository enthält **ausschließlich die Website**. Die Desktop-App lebt im
 getrennten Repository [TimInTech/blitztext-linux](https://github.com/TimInTech/blitztext-linux).
@@ -29,19 +29,22 @@ npm run build     # Produktionsbuild → dist/
 npm run preview   # gebauten Stand lokal ansehen
 ```
 
-Der Produktionsbuild landet im Ordner **`dist/`** und ist für das Hosting am
-Domain-Root (`/`) gebaut.
+Der Produktionsbuild landet im Ordner **`dist/`** und ist für die Auslieferung
+unter dem GitHub-Pages-Unterpfad **`/blitztextweb/`** gebaut
+(`base: '/blitztextweb'` in `astro.config.mjs`).
 
 ## Seiten
 
+Alle Routen werden unter dem Unterpfad `/blitztextweb/` ausgeliefert.
+
 | Route | Inhalt |
 | :--- | :--- |
-| `/` | Deutsche Startseite |
-| `/en/` | Englische Startseite |
-| `/impressum/` | Impressum (Vorlage mit markierten Platzhaltern) |
-| `/datenschutz/` | Datenschutzerklärung (Deutsch) |
-| `/en/privacy/` | Datenschutzerklärung (Englisch) |
-| `/404.html` | Fehlerseite |
+| `/blitztextweb/` | Deutsche Startseite |
+| `/blitztextweb/en/` | Englische Startseite |
+| `/blitztextweb/impressum/` | Impressum (Vorlage mit markierten Platzhaltern) |
+| `/blitztextweb/datenschutz/` | Datenschutzerklärung (Deutsch) |
+| `/blitztextweb/en/privacy/` | Datenschutzerklärung (Englisch) |
+| `/blitztextweb/404.html` | Fehlerseite |
 
 ## Herkunft der Blitztext-Assets
 
@@ -54,26 +57,28 @@ App-Repository [TimInTech/blitztext-linux](https://github.com/TimInTech/blitztex
 - `public/screenshots/` ← `docs/screenshots/linux/` (Dateinamen für das Web vereinheitlicht)
 - `public/images/og-*.png` ← `docs/screenshots/linux/Banner-{de,en}.png`
 
-## Deployment (geplant)
+## Deployment
 
-Als Hosting-Weg ist **GitHub Pages** vorgesehen (Deployment über GitHub
-Actions, Workflow: `.github/workflows/deploy-pages.yml`). Der Produktionsbuild
-landet in **`dist/`** und wird von dort als Pages-Artefakt veröffentlicht.
+Gehostet wird **ausschließlich über GitHub Pages** (Project Page) unter:
 
-- **Custom Domain:** `blitztext.timintech.de`
-- **DNS-Ziel (später):** `CNAME blitztext → timintech.github.io`
-- Das **Repository bleibt privat**. GitHub Pages aus einem privaten Repository
-  benötigt einen passenden **GitHub-Tarif** (z. B. GitHub Pro / Team /
-  Enterprise); mit einem kostenlosen Plan ist Pages nur für öffentliche Repos
-  verfügbar.
-- **DNS-Konfiguration und die Aktivierung von GitHub Pages sind nicht Teil
-  dieses Auftrags** und müssen manuell in GitHub bzw. beim DNS-Anbieter erfolgen.
-- Die rechtlichen **`[PLATZHALTER]`** in Impressum und Datenschutzerklärung
-  müssen vor der Veröffentlichung ausgefüllt werden.
+`https://timintech.github.io/blitztextweb/`
+
+Es wird **keine Custom Domain** verwendet – es gibt keine `CNAME`-Datei und
+keine DNS-Konfiguration.
+
+- Deployment über GitHub Actions, Workflow `.github/workflows/deploy-pages.yml`
+  (Trigger: Push auf `main` oder manueller `workflow_dispatch`). Der
+  Produktionsbuild in **`dist/`** wird als Pages-Artefakt veröffentlicht.
+- Pull Requests werden nur von `.github/workflows/ci.yml` geprüft (Build ohne
+  Deploy) und deployen niemals.
+- Die Schreibrechte `pages: write` / `id-token: write` gelten ausschließlich für
+  den Deploy-Job; Build und Workflow-Ebene laufen mit `contents: read`.
+- Die eigentliche **Aktivierung von GitHub Pages** (Settings → Pages → Source:
+  *GitHub Actions*) erfolgt manuell und ist nicht Teil dieses Repos.
 
 ## Noch offen vor dem öffentlichen Deployment
 
-- **Rechtliche Angaben:** Impressum und Datenschutzerklärung enthalten deutlich
-  markierte `[PLATZHALTER]` (Betreiber, Anschrift, Kontakt, Hosting-Anbieter/Logdaten).
-  Diese müssen vor der Veröffentlichung ausgefüllt werden.
-- **Deployment und DNS** waren nicht Bestandteil des Erstellungsauftrags dieser Website.
+- **Rechtliche Angaben:** Das Impressum enthält deutlich markierte
+  `[PLATZHALTER]` (Betreiber, Anschrift, Kontakt). Diese sind rechtlich
+  erforderlich (u. a. § 5 DDG) und müssen vom Betreiber ausgefüllt werden, bevor
+  GitHub Pages öffentlich aktiviert wird.

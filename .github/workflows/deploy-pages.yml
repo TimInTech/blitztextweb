@@ -5,11 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Minimale Berechtigungen für das OIDC-basierte Pages-Deployment.
+# Workflow-weit nur Leserechte. Die für das OIDC-basierte Pages-Deployment
+# nötigen Schreibrechte (pages/id-token) sind ausschließlich dem deploy-Job
+# zugeordnet, damit der build-Job sie nicht erbt.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # Nur ein Pages-Deployment gleichzeitig; laufende Deployments nicht abbrechen.
 concurrency:
@@ -49,6 +49,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # Nur der Deploy-Job erhält die für actions/deploy-pages nötigen Rechte.
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
