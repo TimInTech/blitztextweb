@@ -3,7 +3,7 @@ import { product } from '../data/product';
 /**
  * Deutsche Texte (Standardsprache unter /).
  * Alle Produktaussagen sind im App-Repository TimInTech/blitztext-linux
- * (README.md, docs/setup.md, Release v0.8.1) verifiziert.
+ * (README.md, docs/setup.md, Release v0.8.1 sowie der aktuellen Single-Panel-Oberfläche) verifiziert.
  */
 export const de = {
   lang: 'de',
@@ -39,8 +39,8 @@ export const de = {
     lead: 'Blitztext Linux nimmt deine Stimme per Hotkey oder Klick auf, transkribiert sie standardmäßig lokal mit Whisper und legt den Text in die Zwischenablage – auf Wunsch mit automatischem Einfügen in die aktive Anwendung. Optionale KI-Workflows verbessern den Text, bevor du ihn weiterverwendest.',
     ctaPrimary: 'Installation ansehen',
     ctaSecondary: 'Quellcode auf GitHub',
-    imgAlt: 'Hauptfenster von Blitztext Linux mit Workflow-Auswahl, Schreibstil-Vorlage, Aufnahmeknopf und Statusanzeige „Bereit“',
-    imgCaption: 'Das echte Hauptfenster von Blitztext Linux v0.8.1',
+    imgAlt: 'Single-Panel-Widget von Blitztext Linux mit goldenem Mikrofon-Button, Statusanzeige „Bereit“ und Werkzeugleiste für Compose, Verlauf, Vorlesen und Einstellungen',
+    imgCaption: 'Das echte Single-Panel-Widget von Blitztext Linux',
     facts: [
       { label: 'Lizenz', value: 'MIT, Open Source' },
       { label: 'Fokus', value: 'KDE Plasma & Wayland' },
@@ -68,7 +68,7 @@ export const de = {
       },
       {
         title: 'Kompakte Desktop-App',
-        text: 'Eine schlanke PyQt6-Anwendung mit Tray-Icon, Hauptfenster und deutsch-englischer Oberfläche – gebaut für KDE Plasma unter Wayland.',
+        text: 'Ein schlankes, rahmenloses PyQt6-Widget mit Tray-Icon und deutsch-englischer Oberfläche – gebaut für KDE Plasma unter Wayland.',
       },
     ],
   },
@@ -77,38 +77,42 @@ export const de = {
     steps: [
       {
         title: 'Aufnahme starten',
-        text: 'Per globalem Hotkey (z. B. Meta+H) oder per Klick im Hauptfenster bzw. Tray-Menü. Das Tray-Icon zeigt den Status: grün bereit, rot Aufnahme.',
+        text: 'Per globalem Hotkey (Alt halten) oder per Klick auf das goldene Mikrofon im Widget bzw. im Tray-Menü. Widget und Tray-Icon zeigen den Status: grün bereit, Aufnahme mit laufendem Timer und Wellenbalken.',
       },
       {
         title: 'Transkribieren und optional überarbeiten',
-        text: 'Whisper wandelt die Aufnahme lokal in Text um. Auf Wunsch überarbeitet ein KI-Workflow das Ergebnis – mit wählbarem Schreibstil und einsehbarem Prompt.',
+        text: 'Whisper wandelt die Aufnahme lokal in Text um. Auf Wunsch überarbeitet ein KI-Workflow das Ergebnis – mit wählbarer Text-Aktion und einsehbarem Prompt.',
       },
       {
         title: 'Kopieren oder einfügen',
         text: 'Der Text liegt in der Zwischenablage. Ist Auto-Paste aktiv, fügt Blitztext ihn direkt in die Anwendung ein, in der dein Cursor steht.',
       },
     ],
-    imgAlt: 'Hauptfenster von Blitztext Linux während einer laufenden Aufnahme mit rotem Statusindikator',
+    imgAlt: 'Single-Panel-Widget von Blitztext Linux während einer laufenden Aufnahme mit Timer und animierten Wellenbalken',
   },
   features: {
     title: 'Funktionen',
-    lead: 'Alles hier Beschriebene ist im aktuellen Release v0.8.1 enthalten und im App-Repository dokumentiert.',
+    lead: 'Alles hier Beschriebene ist im App-Repository dokumentiert und in der Oberfläche nachvollziehbar.',
     cards: [
       {
         title: 'Fünf Workflows per Hotkey',
-        text: 'Vom reinen Diktat bis zur KI-Umformulierung: Jeder Workflow hat einen eigenen globalen Hotkey und ist auch per Tray-Menü und Hauptfenster erreichbar.',
+        text: 'Vom reinen Diktat bis zur KI-Umformulierung: Jeder Workflow hat einen eigenen globalen Hotkey und ist auch per Tray-Menü und Widget erreichbar.',
       },
       {
-        title: 'Schreibstil-Presets',
-        text: 'Neun fertige Vorlagen – von „E-Mail formell“ über „Stichpunkte“ bis „Kurz & präzise“ – plus eine frei definierbare eigene Vorlage.',
+        title: 'Single-Panel-Widget',
+        text: 'Ein kompaktes, rahmenloses Fenster mit goldenem Mikrofon-Button, Statuspunkt, Timer, Wellenbalken und einer Werkzeugleiste für Compose, Verlauf, Vorlesen und Einstellungen.',
+      },
+      {
+        title: 'Fünf Text-Aktionen',
+        text: 'Text verbessern, Kürzen, Ausformulieren, Tonfall ändern oder eine eigene Anweisung – wählbar im Widget, im Compose-Fenster und in den Einstellungen.',
       },
       {
         title: 'Compose-Fenster',
-        text: 'Text tippen oder einfügen und ohne Mikrofon per KI überarbeiten lassen – mit Workflow-, Preset- und Tonfall-Auswahl sowie Signatur-Unterstützung.',
+        text: 'Text tippen, einfügen oder hineindiktieren und ohne Mikrofon-Umweg per KI überarbeiten lassen – mit Text-Aktion, Tonfall-Auswahl und Signatur-Unterstützung.',
       },
       {
         title: 'Variantenverlauf',
-        text: 'Die letzten zehn KI-Ergebnisse einer Sitzung bleiben im Compose-Fenster erhalten – jederzeit vergleichen und per Klick wiederherstellen.',
+        text: 'Die KI-Ergebnisse einer Sitzung bleiben im Compose-Fenster erhalten – jederzeit über die Pfeile am Ergebnisfeld durchblättern.',
       },
       {
         title: 'Prompt-Transparenz',
@@ -145,31 +149,46 @@ export const de = {
     llmYes: 'Ja',
     llmNo: 'Nein',
     workflows: [
-      { name: 'Blitztext', hotkey: 'Meta + H', llm: false, desc: 'Standard: aufnehmen, transkribieren, Text ausgeben.' },
-      { name: 'Blitztext Local', hotkey: 'Meta + Shift + H', llm: false, desc: 'Erzwingt eine rein lokale Offline-Transkription.' },
-      { name: 'Blitztext+', hotkey: 'Meta + Shift + T', llm: true, desc: 'Formuliert die Aufnahme professionell um – mit wählbarem Schreibstil.' },
-      { name: 'Blitztext $%&!', hotkey: 'Meta + Shift + D', llm: true, desc: 'Dampf ablassen: macht aus Frust eine sachliche Nachricht.' },
-      { name: 'Blitztext :)', hotkey: 'Meta + Shift + E', llm: true, desc: 'Reichert die Nachricht mit passenden Emojis an.' },
+      { name: 'Diktieren', hotkey: 'Alt (halten)', llm: false, desc: 'Standard: aufnehmen, transkribieren, Text ausgeben.' },
+      { name: 'Diktieren · lokal', hotkey: 'Meta + Shift + H', llm: false, desc: 'Erzwingt eine rein lokale Offline-Transkription.' },
+      { name: 'Diktieren & verbessern', hotkey: 'Meta + Shift + T', llm: true, desc: 'Transkribiert und schreibt das Ergebnis mit der gewählten Text-Aktion um.' },
+      { name: 'Sachlich formulieren', hotkey: 'Meta + Shift + D', llm: true, desc: 'Dampf ablassen: macht aus Frust eine sachliche Nachricht.' },
+      { name: 'Emojis ergänzen', hotkey: 'Meta + Shift + E', llm: true, desc: 'Reichert die Nachricht mit passenden Emojis an.' },
     ],
   },
   screenshots: {
     title: 'Screenshots',
-    lead: 'Echte Ansichten aus Blitztext Linux v0.8.1 – keine Mockups.',
+    lead: 'Echte Ansichten aus Blitztext Linux – keine Mockups.',
     items: [
       {
-        src: '/screenshots/main-window-de.png',
-        alt: 'Hauptfenster mit Workflow-Dropdown, Schreibstil-Vorlage, Aufnahmeknopf, Status „Bereit“ sowie Schaltflächen für Diktat und Verlauf',
-        caption: 'Hauptfenster',
+        src: '/screenshots/main-idle-de.png',
+        alt: 'Single-Panel-Widget mit goldenem Mikrofon-Button, grünem Statuspunkt, Anzeige „Bereit“ und Werkzeugleiste',
+        caption: 'Widget: bereit',
       },
       {
-        src: '/screenshots/recording-de.png',
-        alt: 'Hauptfenster während einer laufenden Aufnahme mit rotem Statuspunkt und laufender Zeitanzeige',
-        caption: 'Laufende Aufnahme',
+        src: '/screenshots/main-recording-de.png',
+        alt: 'Single-Panel-Widget während einer laufenden Aufnahme mit gelbem Statuspunkt, Timer und animierten Wellenbalken',
+        caption: 'Widget: Aufnahme läuft',
+      },
+      {
+        src: '/screenshots/main-processing-de.png',
+        alt: 'Single-Panel-Widget während der Transkription mit rotierendem goldenem Fortschrittsring um das Mikrofon',
+        caption: 'Widget: Transkription',
+      },
+      {
+        src: '/screenshots/main-menu-de.png',
+        alt: 'Aktions-Menü des Widgets mit Diktieren & verbessern, Text-Aktion, eigener Anweisung, Sammel-Diktat und Verwerfen',
+        caption: 'Widget: Aktions-Menü',
       },
       {
         src: '/screenshots/compose-de.png',
-        alt: 'Compose-Fenster mit Entwurfsbereich links, KI-Ergebnis rechts, Workflow- und Vorlagenauswahl sowie Schaltflächen zum Verbessern, Kopieren und Einfügen',
+        alt: 'Compose-Fenster mit Entwurfsbereich links, KI-Ergebnis rechts, Text-Aktion sowie Schaltflächen zum Verbessern, Kopieren und Einfügen',
         caption: 'Compose-Fenster (Entwurf)',
+      },
+      {
+        src: '/screenshots/compose-prompt-de.png',
+        alt: 'Compose-Fenster mit ausgeklappter eigener Anweisung und Schaltfläche zum Prüfen des Prompts',
+        caption: 'Compose-Fenster: eigene Anweisung',
       },
       {
         src: '/screenshots/settings-speech-de.png',
@@ -177,9 +196,9 @@ export const de = {
         caption: 'Einstellungen: Spracherkennung',
       },
       {
-        src: '/screenshots/settings-ai-workflows-de.png',
-        alt: 'Einstellungen, Tab KI-Workflows: LLM-Anbieter, API-Key-Umgebungsvariable, Basis-URL, Modell, Tonfall und Schreibstil-Vorlage',
-        caption: 'Einstellungen: KI-Workflows',
+        src: '/screenshots/settings-ai-de.png',
+        alt: 'Einstellungen, Tab Text & KI: System-Prompt, API-Key-Umgebungsvariable, LLM-Anbieter, Basis-URL, Modell, Text-Aktion und Emoji-Dichte',
+        caption: 'Einstellungen: Text & KI',
       },
       {
         src: '/screenshots/settings-general-de.png',
@@ -198,7 +217,7 @@ export const de = {
       },
       {
         src: '/screenshots/tray-menu-de.png',
-        alt: 'Tray-Kontextmenü mit allen fünf Workflows, Compose-Fenster, Schreibstil-Vorlagen, Diktatmodus, Verlauf und Einstellungen',
+        alt: 'Tray-Kontextmenü mit allen fünf Workflows, Compose-Fenster, Text-Aktionen, Diktatmodus, Verlauf und Einstellungen',
         caption: 'Tray-Menü',
       },
     ],
@@ -223,7 +242,7 @@ export const de = {
     ],
     cloudTitle: 'Optional: Cloud-Funktionen',
     cloudItems: [
-      'KI-Workflows (Blitztext+, Blitztext $%&!, Blitztext :)) und das Compose-Fenster nutzen einen LLM-Anbieter: OpenAI, OpenRouter oder einen eigenen OpenAI-kompatiblen Endpoint',
+      'KI-Workflows (Diktieren & verbessern, Sachlich formulieren, Emojis ergänzen) und das Compose-Fenster nutzen einen LLM-Anbieter: OpenAI, OpenRouter oder einen eigenen OpenAI-kompatiblen Endpoint',
       'Cloud-TTS über OpenAI als Alternative zu Piper – mit einmaliger, ausdrücklicher Bestätigung vor der ersten Nutzung',
       'Ein API-Key wird nur für diese optionalen Funktionen benötigt – hinterlegt als Umgebungsvariable, nie in der Konfigurationsdatei',
     ],
@@ -283,7 +302,7 @@ export const de = {
     limits: [
       'Auto-Paste benötigt ydotool ab Version 1.0. Ubuntu 24.04 und 22.04 liefern über apt nur 0.1.x – dort funktioniert die Zwischenablage, aber kein automatisches Einfügen (oder ydotool selbst kompilieren).',
       'Globale Hotkeys nutzen evdev und erfordern die Mitgliedschaft in der input-Gruppe. Systemweit können damit alle Prozesse des Benutzers Eingaben mitlesen – Blitztext daher nur in vertrauenswürdigen Umgebungen einsetzen.',
-      'Ohne globale Hotkeys bleibt Blitztext voll bedienbar – über Hauptfenster und Tray-Menü.',
+      'Ohne globale Hotkeys bleibt Blitztext voll bedienbar – über das Widget und das Tray-Menü.',
       'Fehlt ein Tray-Bereich, fällt das Icon auf das System-Theme zurück; die Farbkodierung kann dann entfallen.',
     ],
   },
@@ -296,7 +315,7 @@ export const de = {
       },
       {
         q: 'Brauche ich einen API-Key?',
-        a: 'Nur für die optionalen KI-Funktionen: die Workflows Blitztext+, Blitztext $%&! und Blitztext :), das Compose-Fenster und Cloud-TTS. Diktat und lokale Transkription funktionieren ohne Key. Der Key wird als Umgebungsvariable hinterlegt (z. B. in ~/.config/blitztext-linux/secrets.env), nie in der Konfigurationsdatei.',
+        a: 'Nur für die optionalen KI-Funktionen: die Workflows Diktieren & verbessern, Sachlich formulieren und Emojis ergänzen, das Compose-Fenster und Cloud-TTS. Diktat und lokale Transkription funktionieren ohne Key. Der Key wird als Umgebungsvariable hinterlegt (z. B. in ~/.config/blitztext-linux/secrets.env), nie in der Konfigurationsdatei.',
       },
       {
         q: 'Welche Linux-Systeme sind getestet?',
@@ -308,7 +327,7 @@ export const de = {
       },
       {
         q: 'Kann ich Blitztext ohne globalen Hotkey verwenden?',
-        a: 'Ja. Das Installationsskript bietet einen Modus ohne globale Hotkeys an. Aufnahme, Workflows, Diktat und Verlauf sind vollständig über das Hauptfenster und das Tray-Menü bedienbar.',
+        a: 'Ja. Das Installationsskript bietet einen Modus ohne globale Hotkeys an. Aufnahme, Workflows, Diktat und Verlauf sind vollständig über das Widget und das Tray-Menü bedienbar.',
       },
       {
         q: 'Wo werden Konfiguration und Secrets gespeichert?',

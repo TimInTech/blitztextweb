@@ -41,7 +41,7 @@ Alle Routen werden unter dem Unterpfad `/blitztextweb/` ausgeliefert.
 | :--- | :--- |
 | `/blitztextweb/` | Deutsche Startseite |
 | `/blitztextweb/en/` | Englische Startseite |
-| `/blitztextweb/impressum/` | Impressum (Vorlage mit markierten Platzhaltern) |
+| `/blitztextweb/impressum/` | Impressum (Betreiberangaben nach § 5 DDG) |
 | `/blitztextweb/datenschutz/` | Datenschutzerklärung (Deutsch) |
 | `/blitztextweb/en/privacy/` | Datenschutzerklärung (Englisch) |
 | `/blitztextweb/404.html` | Fehlerseite |
@@ -51,11 +51,15 @@ Alle Routen werden unter dem Unterpfad `/blitztextweb/` ausgeliefert.
 Logo, Screenshots und Tray-Icons in `public/brand/`, `public/screenshots/` und
 `public/images/` stammen unverändert bzw. verlustfrei optimiert aus dem
 App-Repository [TimInTech/blitztext-linux](https://github.com/TimInTech/blitztext-linux)
-(Stand v0.8.1):
+(Stand: Single-Panel-Widget):
 
 - `public/brand/` ← `app/assets/logo-mark*.svg`
-- `public/screenshots/` ← `docs/screenshots/linux/` (Dateinamen für das Web vereinheitlicht)
+- `public/screenshots/` ← `docs/screenshots/linux/` (identische Dateinamen)
 - `public/images/og-*.png` ← `docs/screenshots/linux/Banner-{de,en}.png`
+
+Die Screenshots werden im App-Repository mit
+`PYTHONPATH=. QT_QPA_PLATFORM=offscreen .venv/bin/python scripts/_make_screenshots.py`
+erzeugt und von dort hierher kopiert.
 
 ## Deployment
 
@@ -75,10 +79,3 @@ keine DNS-Konfiguration.
   den Deploy-Job; Build und Workflow-Ebene laufen mit `contents: read`.
 - Die eigentliche **Aktivierung von GitHub Pages** (Settings → Pages → Source:
   *GitHub Actions*) erfolgt manuell und ist nicht Teil dieses Repos.
-
-## Noch offen vor dem öffentlichen Deployment
-
-- **Rechtliche Angaben:** Das Impressum enthält deutlich markierte
-  `[PLATZHALTER]` (Betreiber, Anschrift, Kontakt). Diese sind rechtlich
-  erforderlich (u. a. § 5 DDG) und müssen vom Betreiber ausgefüllt werden, bevor
-  GitHub Pages öffentlich aktiviert wird.

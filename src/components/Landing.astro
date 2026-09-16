@@ -39,7 +39,7 @@ const recordingShot = dict.screenshots.items[1]!;
       </dl>
     </div>
     <figure class="hero-shot shot">
-      <img src={withBase(heroShot.src)} alt={dict.hero.imgAlt} width="256" height="259" loading="eager" />
+      <img src={withBase(heroShot.src)} alt={dict.hero.imgAlt} width="242" height="215" loading="eager" />
       <figcaption>{dict.hero.imgCaption}</figcaption>
     </figure>
   </div>
@@ -86,7 +86,7 @@ const recordingShot = dict.screenshots.items[1]!;
       </ol>
     </div>
     <figure class="flow-shot shot">
-      <img src={withBase(recordingShot.src)} alt={dict.flow.imgAlt} width="256" height="259" loading="lazy" />
+      <img src={withBase(recordingShot.src)} alt={dict.flow.imgAlt} width="242" height="215" loading="lazy" />
       <figcaption>{recordingShot.caption}</figcaption>
     </figure>
   </div>
@@ -367,7 +367,8 @@ const recordingShot = dict.screenshots.items[1]!;
   }
 
   .hero-shot img {
-    width: min(100%, 280px);
+    /* Natürliche Breite des Single-Panel-Widgets, damit nichts hochskaliert wird. */
+    width: min(100%, 242px);
     height: auto;
   }
 
@@ -421,7 +422,7 @@ const recordingShot = dict.screenshots.items[1]!;
   }
 
   .flow-shot img {
-    width: min(100%, 260px);
+    width: min(100%, 242px);
   }
 
   /* ---- Funktionen ---- */

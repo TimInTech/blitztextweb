@@ -40,8 +40,8 @@ export const en: typeof de = {
     lead: 'Blitztext Linux records your voice via hotkey or click, transcribes it locally with Whisper by default, and puts the text on your clipboard – with optional automatic pasting into the active application. Optional AI workflows polish the text before you use it.',
     ctaPrimary: 'See installation',
     ctaSecondary: 'Source code on GitHub',
-    imgAlt: 'Blitztext Linux main window with workflow selector, writing-style preset, record button, and “Ready” status indicator',
-    imgCaption: 'The real Blitztext Linux v0.8.1 main window',
+    imgAlt: 'Blitztext Linux single-panel widget with a gold microphone button, “Ready” status, and a tool row for compose, history, read aloud, and settings',
+    imgCaption: 'The real Blitztext Linux single-panel widget',
     facts: [
       { label: 'License', value: 'MIT, open source' },
       { label: 'Focus', value: 'KDE Plasma & Wayland' },
@@ -69,7 +69,7 @@ export const en: typeof de = {
       },
       {
         title: 'Compact desktop app',
-        text: 'A lean PyQt6 application with tray icon, main window, and a German/English interface – built for KDE Plasma on Wayland.',
+        text: 'A lean, frameless PyQt6 widget with a tray icon and a German/English interface – built for KDE Plasma on Wayland.',
       },
     ],
   },
@@ -78,38 +78,42 @@ export const en: typeof de = {
     steps: [
       {
         title: 'Start recording',
-        text: 'Via global hotkey (e.g. Meta+H) or a click in the main window or tray menu. The tray icon shows the state: green ready, red recording.',
+        text: 'Via global hotkey (hold Alt) or a click on the gold microphone in the widget or the tray menu. Widget and tray icon show the state: green ready, recording with a live timer and wave bars.',
       },
       {
         title: 'Transcribe and optionally rewrite',
-        text: 'Whisper turns the recording into text locally. If you want, an AI workflow rewrites the result – with a selectable writing style and an inspectable prompt.',
+        text: 'Whisper turns the recording into text locally. If you want, an AI workflow rewrites the result – with a selectable text action and an inspectable prompt.',
       },
       {
         title: 'Copy or paste',
         text: 'The text is on your clipboard. With auto-paste enabled, Blitztext inserts it directly into the application where your cursor is.',
       },
     ],
-    imgAlt: 'Blitztext Linux main window during an active recording with a red status indicator',
+    imgAlt: 'Blitztext Linux single-panel widget during an active recording with a timer and animated wave bars',
   },
   features: {
     title: 'Features',
-    lead: 'Everything described here ships in the current release v0.8.1 and is documented in the app repository.',
+    lead: 'Everything described here is documented in the app repository and visible in the interface.',
     cards: [
       {
         title: 'Five workflows via hotkey',
-        text: 'From plain dictation to AI rephrasing: every workflow has its own global hotkey and is also reachable via the tray menu and main window.',
+        text: 'From plain dictation to AI rephrasing: every workflow has its own global hotkey and is also reachable via the tray menu and the widget.',
       },
       {
-        title: 'Writing-style presets',
-        text: 'Nine ready-made presets – from “Email formal” and “Bullet points” to “Short & precise” – plus a fully custom preset of your own.',
+        title: 'Single-panel widget',
+        text: 'A compact, frameless window with a gold microphone button, status dot, timer, wave bars, and a tool row for compose, history, read aloud, and settings.',
+      },
+      {
+        title: 'Five text actions',
+        text: 'Improve text, Shorten, Expand, Change tone, or a custom instruction – selectable in the widget, the Compose window, and the settings.',
       },
       {
         title: 'Compose window',
-        text: 'Type or paste text and let the AI rewrite it without a microphone – with workflow, preset, and tone selection plus signature support.',
+        text: 'Type, paste, or dictate text and let the AI rewrite it without a microphone detour – with text action, tone selection, and signature support.',
       },
       {
         title: 'Variant history',
-        text: 'The last ten AI results of a session stay available in the Compose window – compare them anytime and restore one with a click.',
+        text: 'The AI results of a session stay available in the Compose window – step through them with the arrows above the result pane.',
       },
       {
         title: 'Prompt transparency',
@@ -146,31 +150,46 @@ export const en: typeof de = {
     llmYes: 'Yes',
     llmNo: 'No',
     workflows: [
-      { name: 'Blitztext', hotkey: 'Meta + H', llm: false, desc: 'Default: record, transcribe, output the text.' },
-      { name: 'Blitztext Local', hotkey: 'Meta + Shift + H', llm: false, desc: 'Forces a purely local offline transcription.' },
-      { name: 'Blitztext+', hotkey: 'Meta + Shift + T', llm: true, desc: 'Rephrases your recording professionally – with a selectable writing style.' },
-      { name: 'Blitztext $%&!', hotkey: 'Meta + Shift + D', llm: true, desc: 'Steam release: turns frustration into a matter-of-fact message.' },
-      { name: 'Blitztext :)', hotkey: 'Meta + Shift + E', llm: true, desc: 'Enriches your message with fitting emojis.' },
+      { name: 'Dictate', hotkey: 'Alt (hold)', llm: false, desc: 'Default: record, transcribe, output the text.' },
+      { name: 'Dictate · local', hotkey: 'Meta + Shift + H', llm: false, desc: 'Forces a purely local offline transcription.' },
+      { name: 'Dictate & improve', hotkey: 'Meta + Shift + T', llm: true, desc: 'Transcribes and rewrites the result with the selected text action.' },
+      { name: 'Make it factual', hotkey: 'Meta + Shift + D', llm: true, desc: 'Steam release: turns frustration into a matter-of-fact message.' },
+      { name: 'Add emojis', hotkey: 'Meta + Shift + E', llm: true, desc: 'Enriches your message with fitting emojis.' },
     ],
   },
   screenshots: {
     title: 'Screenshots',
-    lead: 'Real views from Blitztext Linux v0.8.1 – no mockups.',
+    lead: 'Real views from Blitztext Linux – no mockups.',
     items: [
       {
-        src: '/screenshots/main-window-en.png',
-        alt: 'Main window with workflow dropdown, writing-style preset, record button, “Ready” status, and buttons for dictation and history',
-        caption: 'Main window',
+        src: '/screenshots/main-idle-en.png',
+        alt: 'Single-panel widget with a gold microphone button, green status dot, “Ready” label, and tool row',
+        caption: 'Widget: ready',
       },
       {
-        src: '/screenshots/recording-en.png',
-        alt: 'Main window during an active recording with a red status dot and a running timer',
-        caption: 'Active recording',
+        src: '/screenshots/main-recording-en.png',
+        alt: 'Single-panel widget during an active recording with an amber status dot, running timer, and animated wave bars',
+        caption: 'Widget: recording',
+      },
+      {
+        src: '/screenshots/main-processing-en.png',
+        alt: 'Single-panel widget while transcribing, with a rotating gold progress ring around the microphone',
+        caption: 'Widget: transcribing',
+      },
+      {
+        src: '/screenshots/main-menu-en.png',
+        alt: 'Widget options menu with Dictate & improve, text action, custom instruction, batch dictation, and discard',
+        caption: 'Widget: options menu',
       },
       {
         src: '/screenshots/compose-en.png',
-        alt: 'Compose window with the draft pane on the left, the AI result on the right, workflow and preset selectors, and buttons to improve, copy, and insert',
+        alt: 'Compose window with the draft pane on the left, the AI result on the right, the text action selector, and buttons to improve, copy, and insert',
         caption: 'Compose window (draft)',
+      },
+      {
+        src: '/screenshots/compose-prompt-en.png',
+        alt: 'Compose window with the custom instruction editor expanded and a button to inspect the prompt',
+        caption: 'Compose window: custom instruction',
       },
       {
         src: '/screenshots/settings-speech-en.png',
@@ -178,9 +197,9 @@ export const en: typeof de = {
         caption: 'Settings: Speech recognition',
       },
       {
-        src: '/screenshots/settings-ai-workflows-en.png',
-        alt: 'Settings, AI Workflows tab: LLM provider, API key environment variable, base URL, model, tone, and writing-style preset',
-        caption: 'Settings: AI workflows',
+        src: '/screenshots/settings-ai-en.png',
+        alt: 'Settings, Text & AI tab: system prompt, API key environment variable, LLM provider, base URL, model, text action, and emoji density',
+        caption: 'Settings: Text & AI',
       },
       {
         src: '/screenshots/settings-general-en.png',
@@ -199,7 +218,7 @@ export const en: typeof de = {
       },
       {
         src: '/screenshots/tray-menu-en.png',
-        alt: 'Tray context menu with all five workflows, the Compose window, writing-style presets, dictation mode, history, and settings',
+        alt: 'Tray context menu with all five workflows, the Compose window, text actions, dictation mode, history, and settings',
         caption: 'Tray menu',
       },
     ],
@@ -224,7 +243,7 @@ export const en: typeof de = {
     ],
     cloudTitle: 'Optional: cloud features',
     cloudItems: [
-      'AI workflows (Blitztext+, Blitztext $%&!, Blitztext :)) and the Compose window use an LLM provider: OpenAI, OpenRouter, or a custom OpenAI-compatible endpoint',
+      'AI workflows (Dictate & improve, Make it factual, Add emojis) and the Compose window use an LLM provider: OpenAI, OpenRouter, or a custom OpenAI-compatible endpoint',
       'Cloud TTS via OpenAI as an alternative to Piper – with a one-time, explicit confirmation before first use',
       'An API key is only needed for these optional features – provided as an environment variable, never stored in the configuration file',
     ],
@@ -284,7 +303,7 @@ export const en: typeof de = {
     limits: [
       'Auto-paste requires ydotool 1.0 or newer. Ubuntu 24.04 and 22.04 only ship 0.1.x via apt – the clipboard works there, but there is no automatic pasting (unless you build ydotool from source).',
       'Global hotkeys use evdev and require membership in the input group. At the system level, this means all of the user’s processes could read input – only use Blitztext in environments you trust.',
-      'Without global hotkeys, Blitztext remains fully usable – via the main window and the tray menu.',
+      'Without global hotkeys, Blitztext remains fully usable – via the widget and the tray menu.',
       'If no tray area is available, the icon falls back to the system theme; the color coding may then not apply.',
     ],
   },
@@ -297,7 +316,7 @@ export const en: typeof de = {
       },
       {
         q: 'Do I need an API key?',
-        a: 'Only for the optional AI features: the workflows Blitztext+, Blitztext $%&!, and Blitztext :), the Compose window, and Cloud TTS. Dictation and local transcription work without a key. The key is provided as an environment variable (e.g. in ~/.config/blitztext-linux/secrets.env), never stored in the configuration file.',
+        a: 'Only for the optional AI features: the workflows Dictate & improve, Make it factual, and Add emojis, the Compose window, and Cloud TTS. Dictation and local transcription work without a key. The key is provided as an environment variable (e.g. in ~/.config/blitztext-linux/secrets.env), never stored in the configuration file.',
       },
       {
         q: 'Which Linux systems are tested?',
@@ -309,7 +328,7 @@ export const en: typeof de = {
       },
       {
         q: 'Can I use Blitztext without a global hotkey?',
-        a: 'Yes. The install script offers a mode without global hotkeys. Recording, workflows, dictation, and history are fully usable via the main window and the tray menu.',
+        a: 'Yes. The install script offers a mode without global hotkeys. Recording, workflows, dictation, and history are fully usable via the widget and the tray menu.',
       },
       {
         q: 'Where are configuration and secrets stored?',
