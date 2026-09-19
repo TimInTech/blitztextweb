@@ -65,7 +65,7 @@ export const en: typeof de = {
       },
       {
         title: 'Copy or auto-paste',
-        text: 'The finished text lands on the clipboard. With ydotool 1.0 or newer, Blitztext can paste it right at your cursor position.',
+        text: 'The finished text lands on the clipboard. With a running ydotoold service, Blitztext can paste it right at your cursor position.',
       },
       {
         title: 'Compact desktop app',
@@ -284,7 +284,7 @@ export const en: typeof de = {
   },
   compat: {
     title: 'Compatibility',
-    lead: 'Blitztext Linux is developed and systematically tested on Kubuntu with KDE Plasma on Wayland. Other Ubuntu/Debian-based systems may work but are not systematically tested.',
+    lead: 'Blitztext Linux is developed on Kubuntu with KDE Plasma on Wayland and tested there as well as on Ubuntu 24.04 and 26.04 with GNOME on Wayland. Linux Mint and Lubuntu remain untested.',
     colSystem: 'System',
     colSession: 'Session',
     colStatus: 'Status',
@@ -293,15 +293,15 @@ export const en: typeof de = {
     statusUntested: 'Untested',
     rows: [
       { system: 'Kubuntu 26.04, KDE Plasma', session: 'Wayland', tested: true, notes: 'Reference environment; ydotool ≥ 1.0 available directly via apt.' },
-      { system: 'Ubuntu 24.04, GNOME', session: 'Wayland', tested: false, notes: 'apt only ships ydotool 0.1.x → no auto-paste (clipboard works); tray needs the AppIndicator extension.' },
-      { system: 'Ubuntu 26.04, GNOME', session: 'Wayland', tested: false, notes: 'Tray needs the AppIndicator extension; Whisper wheels may lag behind new Python releases.' },
-      { system: 'Linux Mint 22.x, Cinnamon', session: 'X11', tested: false, notes: 'xclip instead of wl-copy as the clipboard backend; apt ydotool 0.1.x → no auto-paste.' },
-      { system: 'Lubuntu 24.04 / 26.04, LXQt', session: 'X11 / Wayland', tested: false, notes: 'The session type decides the clipboard backend – scripts/verify.sh shows which one applies.' },
+      { system: 'Ubuntu 24.04, GNOME', session: 'Wayland', tested: true, notes: 'Clean install and live test completed; ydotool 0.1.8 is supported through symbolic shortcuts.' },
+      { system: 'Ubuntu 26.04, GNOME', session: 'Wayland', tested: true, notes: 'Clean install and live test completed: GUI, tray, recording, local Whisper, hotkey, clipboard, auto-paste, and autostart verified.' },
+      { system: 'Linux Mint 22.x, Cinnamon', session: 'X11', tested: false, notes: 'Untested. xclip is expected to be the clipboard backend; verify the session and ydotoold separately.' },
+      { system: 'Lubuntu 24.04 / 26.04, LXQt', session: 'X11 / Wayland', tested: false, notes: 'Untested. The session type decides the clipboard backend – scripts/verify.sh shows which one applies.' },
     ],
-    note: 'This matrix comes from the project’s diagnostic documentation. It describes expected behavior and known risks – it is not a support promise.',
+    note: 'This matrix describes verified tests and known prerequisites. It is not a support promise for untested systems.',
     limitsTitle: 'Limitations you should know about',
     limits: [
-      'Auto-paste requires ydotool 1.0 or newer. Ubuntu 24.04 and 22.04 only ship 0.1.x via apt – the clipboard works there, but there is no automatic pasting (unless you build ydotool from source).',
+      'Auto-paste requires a running ydotoold service. Blitztext supports Ubuntu 24.04’s ydotool 0.1.8 with symbolic shortcuts and ydotool ≥ 1.0 with raw keycodes.',
       'Global hotkeys use evdev and require membership in the input group. At the system level, this means all of the user’s processes could read input – only use Blitztext in environments you trust.',
       'Without global hotkeys, Blitztext remains fully usable – via the widget and the tray menu.',
       'If no tray area is available, the icon falls back to the system theme; the color coding may then not apply.',
@@ -320,11 +320,11 @@ export const en: typeof de = {
       },
       {
         q: 'Which Linux systems are tested?',
-        a: 'Kubuntu with KDE Plasma on Wayland is systematically tested. Ubuntu (GNOME), Linux Mint (Cinnamon), and Lubuntu (LXQt) share the package base and are supported by the install script, but are not systematically tested – the compatibility matrix above is diagnostic guidance, not a support promise.',
+        a: 'Tested systems are Kubuntu with KDE Plasma on Wayland and Ubuntu 24.04 and 26.04 with GNOME on Wayland. Linux Mint (Cinnamon) and Lubuntu (LXQt) remain untested; the compatibility matrix above is diagnostic guidance, not a support promise.',
       },
       {
         q: 'Does auto-paste work on Wayland?',
-        a: 'Yes, via ydotool 1.0 or newer – verified on the reference environment. On systems whose package sources only ship ydotool 0.1.x (e.g. Ubuntu 24.04/22.04 via apt), there is no auto-paste; the text still lands on the clipboard. Building ydotool ≥ 1.0 from source is documented.',
+        a: 'Yes. Tested on Kubuntu with KDE Plasma and on Ubuntu 24.04 and 26.04 with GNOME on Wayland. Ubuntu 24.04’s ydotool 0.1.8 uses symbolic shortcuts, while ydotool ≥ 1.0 uses raw keycodes. A running ydotoold service remains required; this is not a support promise for untested systems.',
       },
       {
         q: 'Can I use Blitztext without a global hotkey?',

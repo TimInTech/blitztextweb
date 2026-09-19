@@ -64,7 +64,7 @@ export const de = {
       },
       {
         title: 'Kopieren oder automatisch einfügen',
-        text: 'Der fertige Text landet in der Zwischenablage. Mit ydotool ab Version 1.0 fügt Blitztext ihn auf Wunsch direkt an der Cursorposition ein.',
+        text: 'Der fertige Text landet in der Zwischenablage. Mit aktivem ydotoold fügt Blitztext ihn auf Wunsch direkt an der Cursorposition ein.',
       },
       {
         title: 'Kompakte Desktop-App',
@@ -283,7 +283,7 @@ export const de = {
   },
   compat: {
     title: 'Kompatibilität',
-    lead: 'Blitztext Linux wird auf Kubuntu mit KDE Plasma unter Wayland entwickelt und systematisch getestet. Andere Ubuntu-/Debian-basierte Systeme können funktionieren, sind aber nicht systematisch getestet.',
+    lead: 'Blitztext Linux wird auf Kubuntu mit KDE Plasma unter Wayland entwickelt und ist dort sowie auf Ubuntu 24.04 und 26.04 mit GNOME unter Wayland getestet. Linux Mint und Lubuntu bleiben ungetestet.',
     colSystem: 'System',
     colSession: 'Session',
     colStatus: 'Status',
@@ -292,15 +292,15 @@ export const de = {
     statusUntested: 'Ungetestet',
     rows: [
       { system: 'Kubuntu 26.04, KDE Plasma', session: 'Wayland', tested: true, notes: 'Referenzumgebung; ydotool ≥ 1.0 direkt über apt verfügbar.' },
-      { system: 'Ubuntu 24.04, GNOME', session: 'Wayland', tested: false, notes: 'apt liefert nur ydotool 0.1.x → kein Auto-Paste (Zwischenablage funktioniert); Tray benötigt AppIndicator-Erweiterung.' },
-      { system: 'Ubuntu 26.04, GNOME', session: 'Wayland', tested: false, notes: 'Tray benötigt AppIndicator-Erweiterung; Whisper-Wheels können neuen Python-Versionen hinterherhinken.' },
-      { system: 'Linux Mint 22.x, Cinnamon', session: 'X11', tested: false, notes: 'xclip statt wl-copy als Clipboard-Backend; apt-ydotool 0.1.x → kein Auto-Paste.' },
-      { system: 'Lubuntu 24.04 / 26.04, LXQt', session: 'X11 / Wayland', tested: false, notes: 'Session-Typ bestimmt das Clipboard-Backend – scripts/verify.sh zeigt, was gilt.' },
+      { system: 'Ubuntu 24.04, GNOME', session: 'Wayland', tested: true, notes: 'Clean-Install und Live-Test abgeschlossen; ydotool 0.1.8 wird über symbolische Tastenkombinationen unterstützt.' },
+      { system: 'Ubuntu 26.04, GNOME', session: 'Wayland', tested: true, notes: 'Clean-Install und Live-Test abgeschlossen: GUI, Tray, Aufnahme, lokales Whisper, Hotkey, Zwischenablage, Auto-Paste und Autostart geprüft.' },
+      { system: 'Linux Mint 22.x, Cinnamon', session: 'X11', tested: false, notes: 'Ungetestet. xclip ist voraussichtlich das Clipboard-Backend; Session und ydotoold separat prüfen.' },
+      { system: 'Lubuntu 24.04 / 26.04, LXQt', session: 'X11 / Wayland', tested: false, notes: 'Ungetestet. Der Session-Typ bestimmt das Clipboard-Backend – scripts/verify.sh zeigt, was gilt.' },
     ],
-    note: 'Diese Matrix stammt aus der Diagnose-Dokumentation des Projekts. Sie beschreibt erwartetes Verhalten und bekannte Risiken – sie ist keine Supportzusage.',
+    note: 'Diese Matrix beschreibt verifizierte Tests und bekannte Voraussetzungen. Sie ist keine Supportzusage für ungetestete Systeme.',
     limitsTitle: 'Einschränkungen, die du kennen solltest',
     limits: [
-      'Auto-Paste benötigt ydotool ab Version 1.0. Ubuntu 24.04 und 22.04 liefern über apt nur 0.1.x – dort funktioniert die Zwischenablage, aber kein automatisches Einfügen (oder ydotool selbst kompilieren).',
+      'Auto-Paste benötigt ein laufendes ydotoold. Blitztext unterstützt Ubuntu 24.04s ydotool 0.1.8 mit symbolischen Tastenkombinationen und ydotool ≥ 1.0 mit rohen Keycodes.',
       'Globale Hotkeys nutzen evdev und erfordern die Mitgliedschaft in der input-Gruppe. Systemweit können damit alle Prozesse des Benutzers Eingaben mitlesen – Blitztext daher nur in vertrauenswürdigen Umgebungen einsetzen.',
       'Ohne globale Hotkeys bleibt Blitztext voll bedienbar – über das Widget und das Tray-Menü.',
       'Fehlt ein Tray-Bereich, fällt das Icon auf das System-Theme zurück; die Farbkodierung kann dann entfallen.',
@@ -319,11 +319,11 @@ export const de = {
       },
       {
         q: 'Welche Linux-Systeme sind getestet?',
-        a: 'Systematisch getestet ist Kubuntu mit KDE Plasma unter Wayland. Ubuntu (GNOME), Linux Mint (Cinnamon) und Lubuntu (LXQt) teilen die Paketbasis und werden vom Installationsskript unterstützt, sind aber nicht systematisch getestet – die Kompatibilitätsmatrix oben ist eine Diagnose-Einordnung, keine Supportzusage.',
+        a: 'Getestet sind Kubuntu mit KDE Plasma unter Wayland sowie Ubuntu 24.04 und 26.04 mit GNOME unter Wayland. Linux Mint (Cinnamon) und Lubuntu (LXQt) bleiben ungetestet; die Kompatibilitätsmatrix oben ist eine Diagnose-Einordnung, keine Supportzusage.',
       },
       {
         q: 'Funktioniert Auto-Paste unter Wayland?',
-        a: 'Ja, über ydotool ab Version 1.0 – auf der Referenzumgebung ist das verifiziert. Auf Systemen, deren Paketquellen nur ydotool 0.1.x liefern (z. B. Ubuntu 24.04/22.04 via apt), gibt es kein Auto-Paste; der Text liegt dann trotzdem in der Zwischenablage. Ein Selbstbau von ydotool ≥ 1.0 ist dokumentiert.',
+        a: 'Ja. Getestet auf Kubuntu mit KDE Plasma sowie Ubuntu 24.04 und 26.04 mit GNOME unter Wayland. Ubuntu 24.04s ydotool 0.1.8 nutzt symbolische Tastenkombinationen, ydotool ≥ 1.0 rohe Keycodes. Voraussetzung bleibt ein laufendes ydotoold; ungetestete Systeme erhalten daraus keine Supportzusage.',
       },
       {
         q: 'Kann ich Blitztext ohne globalen Hotkey verwenden?',
