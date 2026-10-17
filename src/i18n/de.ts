@@ -39,7 +39,7 @@ export const de = {
     lead: 'Blitztext Linux nimmt deine Stimme per Hotkey oder Klick auf, transkribiert sie standardmäßig lokal mit Whisper und legt den Text in die Zwischenablage – auf Wunsch mit automatischem Einfügen in die aktive Anwendung. Optionale KI-Workflows verbessern den Text, bevor du ihn weiterverwendest.',
     ctaPrimary: 'Installation ansehen',
     ctaSecondary: 'Quellcode auf GitHub',
-    imgAlt: 'Single-Panel-Widget von Blitztext Linux mit goldenem Mikrofon-Button, Statusanzeige „Bereit“ und Werkzeugleiste für Compose, Verlauf, Vorlesen und Einstellungen',
+    imgAlt: 'Single-Panel-Widget von Blitztext Linux mit goldenem Mikrofon-Button, Umschalter „Lokal | Mit KI“ und Werkzeugleiste für Compose, Verlauf und Vorlesen; das Einstellungs-Zahnrad sitzt in der Titelleiste',
     imgCaption: 'Das echte Single-Panel-Widget von Blitztext Linux',
     facts: [
       { label: 'Lizenz', value: 'MIT, Open Source' },
@@ -162,7 +162,7 @@ export const de = {
     items: [
       {
         src: '/screenshots/main-idle-de.png',
-        alt: 'Single-Panel-Widget mit goldenem Mikrofon-Button, grünem Statuspunkt, Anzeige „Bereit“ und Werkzeugleiste',
+        alt: 'Single-Panel-Widget mit goldenem Mikrofon-Button, Umschalter „Lokal | Mit KI“, Zustandszeile und Werkzeugleiste',
         caption: 'Widget: bereit',
       },
       {
@@ -177,8 +177,8 @@ export const de = {
       },
       {
         src: '/screenshots/main-menu-de.png',
-        alt: 'Aktions-Menü des Widgets mit Diktieren & verbessern, Text-Aktion, eigener Anweisung, Sammel-Diktat und Verwerfen',
-        caption: 'Widget: Aktions-Menü',
+        alt: 'Detail-Popup des Widgets für „Mit KI“ mit Aktion, Schreibstil, KI-Anbieter, Whisper-Modell, Fertig, Sammel-Diktat und Verwerfen',
+        caption: 'Widget: Lokal | Mit KI und Details',
       },
       {
         src: '/screenshots/compose-de.png',
