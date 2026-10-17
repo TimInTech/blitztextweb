@@ -40,7 +40,7 @@ export const en: typeof de = {
     lead: 'Blitztext Linux records your voice via hotkey or click, transcribes it locally with Whisper by default, and puts the text on your clipboard – with optional automatic pasting into the active application. Optional AI workflows polish the text before you use it.',
     ctaPrimary: 'See installation',
     ctaSecondary: 'Source code on GitHub',
-    imgAlt: 'Blitztext Linux single-panel widget with a gold microphone button, “Ready” status, and a tool row for compose, history, read aloud, and settings',
+    imgAlt: 'Blitztext Linux single-panel widget with a gold microphone button, a Local | With AI switch, and a tool row for compose, history, and read aloud; the settings gear sits in the title bar',
     imgCaption: 'The real Blitztext Linux single-panel widget',
     facts: [
       { label: 'License', value: 'MIT, open source' },
@@ -163,7 +163,7 @@ export const en: typeof de = {
     items: [
       {
         src: '/screenshots/main-idle-en.png',
-        alt: 'Single-panel widget with a gold microphone button, green status dot, “Ready” label, and tool row',
+        alt: 'Single-panel widget with a gold microphone button, a Local | With AI switch, a state line, and a tool row',
         caption: 'Widget: ready',
       },
       {
@@ -178,8 +178,8 @@ export const en: typeof de = {
       },
       {
         src: '/screenshots/main-menu-en.png',
-        alt: 'Widget options menu with Dictate & improve, text action, custom instruction, batch dictation, and discard',
-        caption: 'Widget: options menu',
+        alt: 'Widget details popup for With AI with action, writing style, AI provider, Whisper model, Done, batch dictation, and discard',
+        caption: 'Widget: Local | With AI and details',
       },
       {
         src: '/screenshots/compose-en.png',
