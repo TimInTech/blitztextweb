@@ -2,7 +2,8 @@
  * Zentrale, im App-Repository (TimInTech/blitztext-linux) verifizierte
  * Produktmetadaten. Einzige Stelle, an der Version und URLs gepflegt werden.
  *
- * Stand: Commit 8d75114 / Release v0.9.0 (2026-10-18).
+ * Letzter stabiler Release: v0.9.0 (2026-10-18).
+ * Aktueller App-Quellstand: Commit 6e82ae1 (2026-10-25).
  */
 export const product = {
   name: 'Blitztext Linux',
