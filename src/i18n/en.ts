@@ -120,6 +120,10 @@ export const en: typeof de = {
         text: 'Before every AI call you can view and fully edit the system prompt and user message. No black box.',
       },
       {
+        title: 'Discard recordings and updates',
+        text: 'Discard an active recording without transcribing it. Download and install public stable releases from inside the app when you choose.',
+      },
+      {
         title: 'Dictation mode and history',
         text: 'In dictation mode every transcript is saved as a Markdown note and can be merged on demand. The history keeps your recent transcripts at hand.',
       },

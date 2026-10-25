@@ -16,7 +16,8 @@ Laufzeitabhängigkeit zum App-Repository.
 
 ## Voraussetzungen
 
-- Node.js ≥ 20
+- Node.js ≥ 22.23.4
+- npm ≥ 10.8.2
 - npm
 
 ## Entwicklung

@@ -3,7 +3,7 @@ import { product } from '../data/product';
 /**
  * Deutsche Texte (Standardsprache unter /).
  * Alle Produktaussagen sind im App-Repository TimInTech/blitztext-linux
- * (README.md, docs/setup.md, Release v0.9.0 sowie der aktuellen Single-Panel-Oberfläche) verifiziert.
+ * (README.md, docs/setup.md, Release v0.9.0 sowie App-Hauptbranch 6e82ae1) verifiziert.
  */
 export const de = {
   lang: 'de',
@@ -117,6 +117,10 @@ export const de = {
       {
         title: 'Prompt-Transparenz',
         text: 'Vor jedem KI-Aufruf lassen sich System-Prompt und Nutzernachricht anzeigen und vollständig bearbeiten. Keine Blackbox.',
+      },
+      {
+        title: 'Aufnahmen verwerfen und Updates',
+        text: 'Laufende Aufnahmen lassen sich ohne Transkription verwerfen. Öffentliche stabile Releases können auf Wunsch direkt in der App geladen und installiert werden.',
       },
       {
         title: 'Diktatmodus und Verlauf',
