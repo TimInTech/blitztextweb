@@ -119,6 +119,10 @@ export const de = {
         text: 'Vor jedem KI-Aufruf lassen sich System-Prompt und Nutzernachricht anzeigen und vollständig bearbeiten. Keine Blackbox.',
       },
       {
+        title: 'Aufnahmen verwerfen und Updates',
+        text: 'Laufende Aufnahmen lassen sich ohne Transkription verwerfen. Öffentliche stabile Releases können auf Wunsch direkt in der App geladen und installiert werden.',
+      },
+      {
         title: 'Diktatmodus und Verlauf',
         text: 'Im Diktatmodus wird jedes Transkript als Markdown-Notiz gespeichert und auf Wunsch zusammengeführt. Der Verlauf hält die letzten Transkripte bereit.',
       },
