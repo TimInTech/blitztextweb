@@ -3,7 +3,7 @@ import { product } from '../data/product';
 /**
  * Deutsche Texte (Standardsprache unter /).
  * Alle Produktaussagen sind im App-Repository TimInTech/blitztext-linux
- * (README.md, docs/setup.md, Release v0.9.0 sowie der aktuellen Single-Panel-Oberfläche) verifiziert.
+ * (README.md, docs/setup.md, Release v0.9.0 sowie App-Hauptbranch 6e82ae1) verifiziert.
  */
 export const de = {
   lang: 'de',
